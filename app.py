@@ -24,7 +24,7 @@ st.title(f'SNP500 Screener [{last_date}]')
 
 
 #cteate a stramlit 
-side_bar_select_text=['individual_ticker','sector_watch','snp_watch'] #options 
+side_bar_select_text=['sector_watch','snp_watch','individual_ticker'] #options 
 sectors_list=pd.unique(df_main['sector']) #select a sector
 features=['top_gainers','top_loser','all_time_high','all_time_low','week_up','month_up','year_up','']
 
@@ -49,37 +49,42 @@ if side_bar_selection=='snp_watch':
 
 def get_filtered_df(condition,ascending=True,df=temp_df):
     d=df.sort_values(by=condition,ascending=ascending).reset_index(drop=True)
-
     return d
 
-
-
-
 gainer_loser_key_values={\
-    'last_day':'last_change',\
+    'last_day':'last_change_pct',\
     'this_week':'pct_change_latest_week',
     'this_month':'pct_change_latest_month',
     'ytd':'pct_change_latest_year'
 }
 #add features
-features=['top_ten_gainers','top_ten_loser']
+#features=['top_ten_gainers','top_ten_loser']
 
 #page title 
 if side_bar_selection in ['sector_watch','snp_watch']:
 #gainer loser selection in side bar
-    gainer_loser_selection=st.sidebar.radio('Top Gainers or Losers:',['Gainer','Loser'])
-    if gainer_loser_selection:
-        radio_option=st.sidebar.radio(
+    parameter_selection=st.sidebar.radio('Parameters:',['Gainer','Loser','SMA'])
+
+    if parameter_selection in ['Gainer','Loser']:
+        gainer_radio_option=st.sidebar.radio(
        'time_range',
-        ('last_day','this_week','this_month','ytd'),
-    #index=0,
-    )
-    print(f'Debug: gainer_loser_radio: {gainer_loser_selection}\ntime_range_button: {radio_option}')
-    condition=gainer_loser_key_values[radio_option]
-    print(f'Debug:condition: {condition}')
-    ascending=True
-    if gainer_loser_selection=='Gainer':ascending=False
-    con_df=get_filtered_df(condition=condition,ascending=ascending)
+        ('last_day','this_week','this_month','ytd'),)
+        print(f'parameter-button: {parameter_selection} radio_option: {gainer_radio_option}')
+        condition=gainer_loser_key_values[gainer_radio_option]
+        ascending=True
+        if parameter_selection=='Gainer':ascending=False
+        con_df=get_filtered_df(condition=condition,ascending=ascending)
+
+    if parameter_selection in ['SMA']:
+        sma_radio_option=st.sidebar.radio(
+            'sma_condition',
+            (r'last_close > sma_50 & last_close > sma_200',r'last_close > sma_21',r'last_close > sma_50',r'last_close > sma_200')
+        )
+        print(f'parameter-button: {parameter_selection} radio_option: {sma_radio_option}')
+        con_df=temp_df.query(sma_radio_option)
+
+
+        #con_df=pd.DataFrame()
     st.write(con_df)
 
 #show the df
