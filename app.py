@@ -14,7 +14,11 @@ df_main=pd.read_csv('final_df.csv')
 
 last_date=df_main['last_date'].values[0]
 print(f'Debug: Last Date: {last_date}')
-st.header(f'SNP500 Screener [{last_date}]')
+#st.header(f'SNP500 OVERVIEW [{last_date}]')
+st.markdown(
+f"<h4 style='text-align:center'> SNP500 OVERVIEW [{last_date}]</h4>",
+unsafe_allow_html=True
+)
 # st.markdown(
 #     """
 #     <style>
@@ -42,6 +46,10 @@ print(f'side_bar_selection: {side_bar_selection}')
 if side_bar_selection=='sector_watch':
     sector_selection=st.sidebar.selectbox('select a sector',sectors_list)
     print(f'Debug: sector selection; {sector_selection}')
+    st.markdown(
+        f"<h5 style='text-align:center;color:darkorchid;'>{sector_selection}</h5>",
+        unsafe_allow_html=True
+    )
     temp_df=df_main[df_main['sector']==sector_selection].reset_index(drop=True)
     #st.write(sector_df)
 
@@ -92,14 +100,14 @@ if side_bar_selection in ['sector_watch','snp_watch']:
         #modify colors to bars
         colors=['lightgreen' if value>=0 else 'salmon' for value in plot_con_df[condition]]
 
-        print(f"Debug: colors: {colors}")
+        #print(f"Debug: colors: {colors}")
 
         #title for gainer loser
         header_text=f'{parameter_selection.upper()}-{gainer_radio_option.upper()}'
         header_color='green' if 'GAINER' in header_text else 'red'
         #st.subheader(f'{parameter_selection.upper()}-{gainer_radio_option.upper()}')
         st.markdown(
-    f"<h1 style='text-align: center;color:{header_color};'>{header_text}</h1>",
+    f"<h2 style='text-align: center;color:{header_color};'>{header_text}</h2>",
     unsafe_allow_html=True
 )
 
@@ -146,7 +154,11 @@ if side_bar_selection in ['sector_watch','snp_watch']:
                 con_df=temp_df.copy()
         else:
             con_df=temp_df.query(sma_radio_option).sort_values(by='last_close').reset_index(drop=True)
-            st.subheader(f'{sma_radio_option.upper()}')
+            #st.subheader(f'{sma_radio_option.upper()}')
+            st.markdown(
+                f"<h2 style='text-align:center;background-color:rgb(255, 230, 179,0.25);padding:3px'>{sma_radio_option.upper()}</h2>",
+                unsafe_allow_html=True
+                        )
             plot_con_df=con_df.copy()
             fig=px.bar(
              plot_con_df,x='ticker',y='last_close',hover_data=hover_data,width=1600,height=800
