@@ -89,12 +89,24 @@ if side_bar_selection in ['sector_watch','snp_watch']:
 
         plot_con_df=con_df.copy()
 
+        #modify colors to bars
+        colors=['lightgreen' if value>=0 else 'salmon' for value in plot_con_df[condition]]
+
+        print(f"Debug: colors: {colors}")
+
         #title for gainer loser
-        st.subheader(f'{parameter_selection.upper()}-{gainer_radio_option.upper()}')
+        header_text=f'{parameter_selection.upper()}-{gainer_radio_option.upper()}'
+        header_color='green' if 'GAINER' in header_text else 'red'
+        #st.subheader(f'{parameter_selection.upper()}-{gainer_radio_option.upper()}')
+        st.markdown(
+    f"<h1 style='text-align: center;color:{header_color};'>{header_text}</h1>",
+    unsafe_allow_html=True
+)
 
         fig=px.bar(
             plot_con_df,x='ticker',y=condition,hover_data=hover_data,width=1600,height=800
         )
+        fig.update_traces(marker_color=colors)
 
 
     if parameter_selection in ['SMA']:
