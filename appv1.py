@@ -2,8 +2,6 @@ import streamlit as st
 import plotly.graph_objects as go
 import plotly.express as px
 import pandas as pd
-#from pathlib import Path
-
 
 st.set_page_config(layout="wide")  # Enable wide mode
 #data files sources
@@ -18,10 +16,6 @@ side_bar_selection=st.sidebar.selectbox('select an option',files_list.keys())
 print(f'Debug:side_bar_selection: {side_bar_selection}') 
 
 
-#side bar width
-# Add custom CSS to change sidebar width
-
-#place_holder=st.empty()
 #load master df
 data_file=files_list[side_bar_selection]
 print(f'Debug: data_file: {data_file}')
@@ -44,30 +38,10 @@ st.markdown(
 f"<h4 style='text-align:center'> {side_bar_selection} OVERVIEW [{last_date}]</h4>",
 unsafe_allow_html=True
 )
-# st.markdown(
-#     """
-#     <style>
-#     [data-testid="stSidebar"] {
-#         width: 100px; /* Adjust the width as needed */
-#     }
-#     </style>
-#     """,
-#     unsafe_allow_html=True,
-# )
-
 
 #cteate a stramlit 
-#side_bar_select_text=['snp_watch','sector_watch','DOW','NASDAQ100']#,'snp_watch']#,'individual_ticker'] #options 
 hover_data=['ticker','last_close','last_change_pct','sma_21','sma_50','sma_200',\
             'fiftytwo_week_high','fiftytwo_week_low','pct_change_latest_week','pct_change_latest_month','pct_change_latest_year']
-#features=['top_gainers','top_loser','all_time_high','all_time_low','week_up','month_up','year_up','']
-
-# sectors_list=pd.unique(df_main['sector']) #select a sector
-# print(f"Debug: {sectors_list}")
-
-#side_bar_selection=st.sidebar.selectbox('select an option',side_bar_select_text)
-
-#print(f'side_bar_selection: {side_bar_selection}') 
 
 if side_bar_selection=='SNP500-SECTOR':
     sectors_list=pd.unique(df_main['sector']) #select a sector
@@ -83,11 +57,9 @@ if side_bar_selection=='SNP500-SECTOR':
 
 if side_bar_selection in ['SNP500','NASDAQ100','DOW']:
     temp_df=df_main.copy()
-    #st.write(df_main)
-#st.write(temp_df.sort_values(by='ticker').reset_index(drop=True))
+
 
 #function to display the dataframe based on the option chosen need to change later for %
-
 def get_filtered_df(condition,ascending=True,df=temp_df):
     d=df.sort_values(by=condition,ascending=ascending).reset_index(drop=True)
     return d
@@ -98,10 +70,7 @@ gainer_loser_key_values={\
     'this_month':'pct_change_latest_month',
     'ytd':'pct_change_latest_year'
 }
-#add features
-#features=['top_ten_gainers','top_ten_loser']
 
-#page title 
 if side_bar_selection in ['SNP500','SNP500-SECTOR','DOW','NASDAQ100']:
 #gainer loser selection in side bar
     parameter_selection=st.sidebar.radio('Parameters:',['Gainer','Loser','SMA-N-MISC'])
@@ -164,13 +133,6 @@ if side_bar_selection in ['SNP500','SNP500-SECTOR','DOW','NASDAQ100']:
         sma_radio_option=st.sidebar.radio(
             'Features:',
             radio_option_list
-            #(r'last_close > sma_50 & last_close > sma_200',\
-            # r'last_close > sma_21',r'last_close > sma_50',\
-            #    r'last_close > sma_200',\
-            #     r'last_close-sma_21', r'last_close-sma_50',r'last_close-sma_200',\
-            #     r'fiftytwo_week_high',r'fiftytwo_week_low',\
-            #     r'up_three_days',r'down_three_days'
-            #        )
         )
         print(f'parameter-button: {parameter_selection} radio_option: {sma_radio_option}')
 
@@ -215,96 +177,40 @@ if side_bar_selection in ['SNP500','SNP500-SECTOR','DOW','NASDAQ100']:
                 fig=px.bar(temp_df,x='ticker',y=par,hover_data=hover_data,width=1600,height=800)
                 con_df=temp_df.copy()
 
-            elif sma_radio_option in [r'last_close-sma_21']:
-                temp_df['last_close-sma_21']=temp_df['last_close']-temp_df['sma_21']
-                st.subheader('DIFFERENCES BETWEEN LAST CLOSE AND SMA21')
-                temp_df=temp_df.sort_values(by='last_close-sma_21')
-                fig=px.bar(
-                    temp_df,x='ticker',y='last_close-sma_21',hover_data=hover_data,width=1600,height=800
+            elif sma_radio_option in [r'last_close-sma_21',r'last_close-sma_50',r'last_close-sma_200']:
+                par=sma_radio_option
+                sma_part=par.split('-')[1]
+                last_close_part=par.split('-')[0]
+                print(f"Debug: sma_radio_option: {par}\n sma_part: {sma_part}")
+                temp_df[par]=temp_df['last_close']-temp_df[sma_part]
+                #temp_df['last_close-sma_21']=temp_df['last_close']-temp_df['sma_21']
+                st.markdown(
+                    f"<h2 style='text-align:center;color:magenta'>{par.upper()}</h2>",unsafe_allow_html=True
                 )
-                con_df=temp_df.copy()
-            elif sma_radio_option in [r'last_close-sma_50']:
-                temp_df['last_close-sma_50']=temp_df['last_close']-temp_df['sma_50']
-                st.subheader('DIFFERENCES BETWEEN LAST CLOSE AND SMA50')
-                temp_df=temp_df.sort_values(by='last_close-sma_50')
+                #st.subheader('DIFFERENCES BETWEEN LAST CLOSE AND SMA21')
+                temp_df=temp_df.sort_values(by=par,ascending=False)
                 fig=px.bar(
-                    temp_df,x='ticker',y='last_close-sma_50',hover_data=hover_data,width=1600,height=800
+                    temp_df,x='ticker',y=par,hover_data=hover_data,width=1600,height=800
                 )
+                #update the bar color
+                bar_color_values=['lightgreen' if x>0 else 'coral' for x in temp_df[par]]
+                #print(f'Debug: colors for bar {bar_color_values}')
+                fig.update_traces(marker_color=bar_color_values)
                 con_df=temp_df.copy()
-            elif sma_radio_option in [r'last_close-sma_200']:
-                temp_df['last_close-sma_200']=temp_df['last_close']-temp_df['sma_200']
-                st.subheader('DIFFERENCES BETWEEN LAST CLOSE AND SMA200')
-                temp_df=temp_df.sort_values(by='last_close-sma_200')
-                fig=px.bar(
-                    temp_df,x='ticker',y='last_close-sma_200',hover_data=hover_data,width=1600,height=800
-                )
-                con_df=temp_df.copy()
-            #if sma_radio_option in [r'fiftytwo_week_high']:
-            #    print(f'Debug: Inside 52 week high condition')
-            #    temp_df=temp_df[temp_df['last_close']==temp_df['fiftytwo_week_high']]
-            #    #temp_df=temp_df[temp_df['last_close']==temp_df['fiftytwo_week_high']] #fiftytwo_week_high
-            #    print(f'Debug: {temp_df.head().to_string()}')
-            #    st.subheader('FIFTY-TWO WEEK HIGH')
-            #    #temp_df=temp_df.sort_values(by='last_close-sma_200')
-            #    fig=px.bar(
-            #        temp_df,x='ticker',y='last_close',hover_data=hover_data,width=1600,height=800
-            #    )
-            #    con_df=temp_df.copy()
-            #if sma_radio_option in [r'up_three_days']:
-            #    print(f'Debug: Inside up_thre_days week high condition')
-            #    temp_df=temp_df[temp_df['up_3_days']>1].sort_values(by='last_close')
-            #    #temp_df['last_close-sma_200']=temp_df['last_close']-temp_df['sma_200']
-            #    st.subheader('UP FOR THREE DAYS')
-            #    #temp_df=temp_df.sort_values(by='last_close')
-            #    fig=px.bar(
-            #        temp_df,x='ticker',y='last_close',hover_data=hover_data,width=1600,height=800
-            #    )
-            #    con_df=temp_df.copy()
-            #if sma_radio_option in [r'last_close-sma_200']:
-            #    temp_df['last_close-sma_200']=temp_df['last_close']-temp_df['sma_200']
-            #    st.subheader('DIFFERENCES BETWEEN LAST CLOSE AND SMA200')
-            #    temp_df=temp_df.sort_values(by='last_close-sma_200')
-            #    fig=px.bar(
-            #        temp_df,x='ticker',y='last_close-sma_200',hover_data=hover_data,width=1600,height=800
-            #    )
-            #    con_df=temp_df.copy()
-            #if sma_radio_option in [r'last_close-sma_200']:
-            #    temp_df['last_close-sma_200']=temp_df['last_close']-temp_df['sma_200']
-            #    st.subheader('DIFFERENCES BETWEEN LAST CLOSE AND SMA200')
-            #    temp_df=temp_df.sort_values(by='last_close-sma_200')
-            #    fig=px.bar(
-            #        temp_df,x='ticker',y='last_close-sma_200',hover_data=hover_data,width=1600,height=800
-            #    )
-            #    con_df=temp_df.copy()
-        # else:
-        #     con_df=temp_df.query(sma_radio_option).sort_values(by='last_close').reset_index(drop=True)
-        #     #st.subheader(f'{sma_radio_option.upper()}')
-        #     st.markdown(
-        #         f"<h2 style='text-align:center;background-color:rgb(255, 230, 179,0.25);padding:3px'>{sma_radio_option.upper()}</h2>",
-        #         unsafe_allow_html=True
-        #                 )
-        #     plot_con_df=con_df.copy()
-        #     fig=px.bar(
-        #      plot_con_df,x='ticker',y='last_close',hover_data=hover_data,width=1600,height=800
-        # )
-
-
-        #con_df=pd.DataFrame()
-    #st.write(con_df)
-
-#con_df=con_df.head(10)
-
-#fig=go.Figure(
-#    data=[
-#        go.Bar(x=con_df['ticker'],y=con_df['last_change_pct'],hover_data=hover_data)
-#    ]
-#)
-
-# fig=px.bar(
-#     con_df,x='ticker',y='last_change_pct',hover_data=hover_data,width=1600,height=800
-# )
-#fig.update_layout(hovermode='y unified')
-
+            # elif sma_radio_option in [r'last_close-sma_50']:
+                # temp_df['last_close-sma_50']=temp_df['last_close']-temp_df['sma_50']
+                # st.subheader('DIFFERENCES BETWEEN LAST CLOSE AND SMA50')
+                # temp_df=temp_df.sort_values(by='last_close-sma_50')
+                # fig=px.bar(
+                    # temp_df,x='ticker',y='last_close-sma_50',hover_data=hover_data,width=1600,height=800
+                # )
+                # con_df=temp_df.copy()
+            # elif sma_radio_option in [r'last_close-sma_200']:
+                # temp_df['last_close-sma_200']=temp_df['last_close']-temp_df['sma_200']
+                # st.subheader('DIFFERENCES BETWEEN LAST CLOSE AND SMA200')
+                # temp_df=temp_df.sort_values(by='last_close-sma_200')
+                # fig=px.bar(
+                    # temp_df,x='ticker',y='last_close-sma_200',hover_data=hover_data,width=1600,height=800
+                # )
+                # con_df=temp_df.copy()
 st.plotly_chart(fig,use_container_width=True)
-#show the df
-#st.write(df_main.head())
