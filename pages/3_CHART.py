@@ -39,6 +39,7 @@ else:
 
     # Drop intermediate columns if not needed
     df.drop(['Price * Volume', 'Cumulative Price * Volume', 'Cumulative Volume'], axis=1, inplace=True)
+    df=df.round(2)
     #st.write(df)
 #get the dataframe related to input ticker
 data=[go.Candlestick(x=df['Date'],open=df['Open'],high=df['High'],low=df['Low'],close=df['Close'])]
@@ -70,7 +71,7 @@ with st.container():
 )
 
     #show chart
-    st.plotly_chart(fig)
+    st.plotly_chart(fig,use_container_width=True)
 #update
 
 #read the information file
