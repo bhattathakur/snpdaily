@@ -27,6 +27,8 @@ st.markdown("""
 5. The ATR% in SMA-N-MISC shows the Average True Range (ATR) relative to the closing price, which can be useful for both options and stock trading strategies.<br>
 6. SMA-N-MISC ranks stocks based on their trading volume and Relative Strength Index (RSI), offering a quick snapshot of stock performance.<br>
 7. The indicator tracks stocks that are making higher or lower closes over a 3-day period, highlighting potential short-term trends.<br>
-8. The CHART feature generates a yearly chart for each ticker and provides key information about the stock’s performance.
+8. The CHART feature generates a yearly chart for given ticker and provides key information about the stock’s performance.
 </div>
+
         """,unsafe_allow_html=True)
+st.markdown("\ncontact: bhattathakur2015@gmail.com")

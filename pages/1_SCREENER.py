@@ -71,6 +71,7 @@ gainer_loser_key_values={\
     'ytd':'pct_change_latest_year'
 }
 
+#st.sidebar.text('contact: bhattathakur2015@gmail.com')
 if side_bar_selection in ['SNP500','SNP500-SECTOR','DOW','NASDAQ100']:
 #gainer loser selection in side bar
     parameter_selection=st.sidebar.radio('Parameters:',['Gainer','Loser','SMA-N-MISC'])
@@ -214,3 +215,4 @@ if side_bar_selection in ['SNP500','SNP500-SECTOR','DOW','NASDAQ100']:
                 # )
                 # con_df=temp_df.copy()
 st.plotly_chart(fig,use_container_width=True)
+st.markdown("\ncontact info: bhattathakur2015@gmail.com")

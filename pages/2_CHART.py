@@ -59,8 +59,8 @@ with st.container():
     fig.add_trace(vwap_data)
     fig.update_layout(xaxis_rangeslider_visible=False)
     fig.update_layout(
-    width=1200,
-    height=800,
+    width=1000,
+    height=600,
     xaxis_title="Date",
     yaxis_title="Price ($)",
     #xaxis=dict(tickmode='linear')#,dtick='D1')
@@ -100,6 +100,7 @@ with st.container():
             #col3.markdown(f"**{key}:** {value}")
             col3.markdown(f"<p style='color:lightgreen;font-size:20px;font-weight:bold;font-family:monospace'>{key}: {value}</p>",unsafe_allow_html=True)
 #st.markdown("### User Details")
+st.markdown("\ncontact info: bhattathakur2015@gmail.com")
 #st.markdown(formatted_text)
 
 
