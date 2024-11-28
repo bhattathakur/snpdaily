@@ -214,5 +214,14 @@ if side_bar_selection in ['SNP500','SNP500-SECTOR','DOW','NASDAQ100']:
                     # temp_df,x='ticker',y='last_close-sma_200',hover_data=hover_data,width=1600,height=800
                 # )
                 # con_df=temp_df.copy()
+fig.update_traces(hoverlabel=dict(bgcolor='lightblue',font_size=18,font_color='darkblue',font_family='monospace'))
+fig.update_layout(
+    font=dict(
+        family="Arial",
+        size=20,
+        color="black"
+    )
+)
+
 st.plotly_chart(fig,use_container_width=True)
 st.markdown("\ncontact info: bhattathakur2015@gmail.com")
