@@ -223,8 +223,8 @@ fig.update_layout(
     )
 )
 fig.update_layout(
-    xaxis=dict(titlefont=dict(family="Arial Bold", size=20)),
-    yaxis=dict(titlefont=dict(family="Arial Bold", size=20))
+    xaxis=dict(titlefont=dict(family="Arial Bold", size=20,color="black")),
+    yaxis=dict(titlefont=dict(family="Arial Bold", size=20,color="black"))
 )
 
 
