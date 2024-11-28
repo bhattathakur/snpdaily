@@ -214,6 +214,9 @@ if side_bar_selection in ['SNP500','SNP500-SECTOR','DOW','NASDAQ100']:
                     # temp_df,x='ticker',y='last_close-sma_200',hover_data=hover_data,width=1600,height=800
                 # )
                 # con_df=temp_df.copy()
+
+#applying the session state for con_df for later use
+st.session_state['dataframe']=con_df
 fig.update_traces(hoverlabel=dict(bgcolor='lightblue',font_size=18,font_color='darkblue',font_family='monospace'))
 fig.update_layout(
     font=dict(
@@ -223,7 +226,7 @@ fig.update_layout(
     )
 )
 fig.update_layout(
-    xaxis=dict(titlefont=dict(family="Arial Bold", size=20,color="black"),tickfont=dict(size=12,color='blue')),
+    xaxis=dict(titlefont=dict(family="Arial Bold", size=20,color="black"),tickfont=dict(size=10,color='brown')),
     yaxis=dict(titlefont=dict(family="Arial Bold", size=20,color="black"))
 )
 
