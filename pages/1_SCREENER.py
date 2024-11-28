@@ -222,6 +222,11 @@ fig.update_layout(
         color="black"
     )
 )
+fig.update_layout(
+    xaxis=dict(titlefont=dict(family="Arial Bold", size=20)),
+    yaxis=dict(titlefont=dict(family="Arial Bold", size=20))
+)
+
 
 st.plotly_chart(fig,use_container_width=True)
 st.markdown("\ncontact info: bhattathakur2015@gmail.com")
