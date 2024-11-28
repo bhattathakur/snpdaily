@@ -2,6 +2,7 @@
 import streamlit as st
 import pandas as pd
 import plotly.graph_objs as go
+import sys
 
 
 st.set_page_config(layout='wide')
@@ -12,11 +13,11 @@ data_file='one_year_combined_df.csv'
 
 temp_df=pd.read_csv(data_file)
 
-print(f"Debug: {temp_df.tail()}")
+#print(f"Debug: {temp_df.tail()}")
 
 unique_tickers=pd.unique(temp_df['ticker'])
 
-print(f"Debug: unique_tickers {unique_tickers}")
+#print(f"Debug: unique_tickers {unique_tickers}")
 
 
 ticker=st.sidebar.text_input("Enter a ticker from SNP500, NASDAQ100 or DOW30",value='NVDA')
