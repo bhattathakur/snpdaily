@@ -1,9 +1,7 @@
 
 import streamlit as st
 import pandas as pd
-#import ta
 import plotly.graph_objs as go
-import sys
 
 
 st.set_page_config(layout='wide')
