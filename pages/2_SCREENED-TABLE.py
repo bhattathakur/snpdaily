@@ -20,6 +20,7 @@ if 'dataframe' in st.session_state:
         if value=='SMA-N-MISC':continue
         text_values_list.append(value)
         #st.write(f"{key}->{value}\n")
+    st.write(text_values_list)
     #text_values_text="|".join(text_values_list)
     info_text="".join(['| '+f'{i.upper()}'+' |' for i in text_values_list])
     df.index=range(1,len(df)+1)
