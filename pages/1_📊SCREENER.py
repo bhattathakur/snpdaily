@@ -23,8 +23,8 @@ if 'misc_key' not in st.session_state:
     st.session_state["misc_key"]= ""  # Default sub-parameter
 if 'dataframe' not in st.session_state:
     st.session_state["dataframe"]= ""  # Default sub-parameter
-if 'misc_parameter_choice' not in st.session_state:
-    st.session_state["misc_parameter_choice"] = r'last_close > sma_50 & last_close > sma_200'
+#if 'misc_parameter_choice' not in st.session_state:
+#    st.session_state["misc_parameter_choice"] = r'last_close > sma_50 & last_close > sma_200'
 
 
 
