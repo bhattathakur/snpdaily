@@ -87,19 +87,19 @@ formatted_text = "\n".join([f"**{key}:** {value}" for key, value in row_dict.ite
 # Display it in Streamlit
 #container1=st.container(boarder=True)
 with st.container():
-    st.write(':gem: INFO TABLE :gem:')
+    st.markdown(f"<h3 style='text-align:center',>✨ INFO TABLE ✨</h3>",unsafe_allow_html=True)
     col1, col2, col3 = st.columns(3)
 
     # Display items in each column
     for idx, (key, value) in enumerate(row_dict.items()):
         if idx % 3 == 0:  # First column
-            col1.markdown(f"<p style='color:orchid;font-size:20px;font-weight:bold;font-family:monospace'>{key}: {value}</p>",unsafe_allow_html=True)
+            col1.markdown(f"<p style='color:orchid;font-size:20px;font-weight:bold;font-family:monospace'>{key:.<24}: {value}</p>",unsafe_allow_html=True)
         elif idx % 3 == 1:  # Second column
-            col2.markdown(f"<p style='color:cyna;font-size:20px;font-weight:bold;font-family:monospace'>{key}: {value}</p>",unsafe_allow_html=True)
+            col2.markdown(f"<p style='color:cyna;font-size:20px;font-weight:bold;font-family:monospace'>{key:.<24}: {value}</p>",unsafe_allow_html=True)
             #col2.markdown(f"**{key}:** {value}")
         else:  # Third column
             #col3.markdown(f"**{key}:** {value}")
-            col3.markdown(f"<p style='color:lightgreen;font-size:20px;font-weight:bold;font-family:monospace'>{key}: {value}</p>",unsafe_allow_html=True)
+            col3.markdown(f"<p style='color:lightgreen;font-size:20px;font-weight:bold;font-family:monospace'>{key:.<24}: {value}</p>",unsafe_allow_html=True)
 #st.markdown("### User Details")
 st.markdown("\ncontact info: bhattathakur2015@gmail.com")
 #st.markdown(formatted_text)
