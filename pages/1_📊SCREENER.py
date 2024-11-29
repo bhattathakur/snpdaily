@@ -11,22 +11,22 @@ files_list={
 'NASDAQ100':'df_nasdaq100.csv',
 'DOW':'df_dow.csv',
 }
-#if 'sector_choice' not in st.session_state:
-#    st.session_state["sector_choice"]= "SNP500"  # Default selection
-#if 'parameter_choice' not in st.session_state:
-#    st.session_state["parameter_choice"] = "Gainer"  # Default parameter choice
-#if 'date_range_choice' not in st.session_state:
-#    st.session_state["date_range_choice"]= "last_day"  # Default sub-parameter
+if 'index_key' not in st.session_state:
+    st.session_state["index_key"]= "SNP500"  # Default selection
+if 'parameter_key' not in st.session_state:
+    st.session_state["parameter_key"] = "Gainer"  # Default parameter choice
+if 'daterange_choice' not in st.session_state:
+    st.session_state["daterange_key"]= "last_day"  # Default sub-parameter
 #if 'misc_parameter_choice' not in st.session_state:
 #    st.session_state["misc_parameter_choice"] = r'last_close > sma_50 & last_close > sma_200'
 
 
 
-side_bar_selection=st.sidebar.selectbox('select an option',files_list.keys(),key='sector_choice')
-if 'sector_choice' not in st.session_state:
-    st.session_state["sector_choice"]= side_bar_selection  # Default selection
+side_bar_selection=st.sidebar.selectbox('select an option',files_list.keys(),key='index_key')
+#if 'sector_choice' not in st.session_state:
+#    st.session_state["sector_choice"]= side_bar_selection  # Default selection
 
-print(f'Debug:key:sector_choice: {st.session_state.sector_choice}')
+#print(f'Debug:key:sector_choice: {st.session_state.sector_choice}')
 
 print(f'Debug:side_bar_selection: {side_bar_selection}') 
 
@@ -61,11 +61,11 @@ hover_data=['ticker','last_close','last_change_pct','sma_21','sma_50','sma_200',
 if side_bar_selection=='SNP500-SECTOR':
     sectors_list=pd.unique(df_main['sector']) #select a sector
     print(f"Debug: {sectors_list}")
-    sector_selection=st.sidebar.selectbox('select a sector',sectors_list,index=1,key='sector')
-    if 'sector' not in st.session_state:
-        st.session_state["sector"]=sector_selection  # Default selection
+    sector_selection=st.sidebar.selectbox('select a sector',sectors_list,index=1,key='sector_key')
+    #if 'sector' not in st.session_state:
+    #    st.session_state["sector"]=sector_selection  # Default selection
     print(f'Debug: sector selection: {sector_selection}')
-    print(f"Debug: sector key: {st.session_state['sector']}")
+    #print(f"Debug: sector key: {st.session_state['sector']}")
     st.markdown(
         f"<h5 style='text-align:center;color:darkorchid;'>{sector_selection}</h5>",
         unsafe_allow_html=True
@@ -101,20 +101,20 @@ gainer_loser_key_values={\
 #st.sidebar.text('contact: bhattathakur2015@gmail.com')
 if side_bar_selection in ['SNP500','SNP500-SECTOR','DOW','NASDAQ100']:
 #gainer loser selection in side bar
-    parameter_selection=st.sidebar.radio('Parameters:',['Gainer','Loser','SMA-N-MISC'],key='parameter_choice')
-    if 'parameter_choice' not in st.session_state:
-        st.session_state["parameter_choice"]=parameter_selection# Default sub-parameter
+    parameter_selection=st.sidebar.radio('Parameters:',['Gainer','Loser','SMA-N-MISC'],key='parameter_key')
+    #if 'parameter_choice' not in st.session_state:
+    #    st.session_state["parameter_choice"]=parameter_selection# Default sub-parameter
 
     if parameter_selection in ['Gainer','Loser']:
         gainer_radio_option=st.sidebar.radio(
        'time_range:',
-        ('last_day','this_week','this_month','ytd'),key='date_range_choice')
+        ('last_day','this_week','this_month','ytd'),key='daterange_key')
         print(f'Debug:parameter-button: {parameter_selection} radio_option: {gainer_radio_option}')
 
-        if 'date_range_choice' not in st.session_state:
-            st.session_state["date_range_choice"]=gainer_radio_option  # Default sub-parameter
+        #if 'date_range_choice' not in st.session_state:
+        #    st.session_state["date_range_choice"]=gainer_radio_option  # Default sub-parameter
 
-        print(f"Debug: gainer_radio_key{st.session_state.date_range_choice}")
+        #print(f"Debug: gainer_radio_key{st.session_state.date_range_choice}")
         condition=gainer_loser_key_values[gainer_radio_option]
         print(f'condition: {condition}')
         ascending=True
@@ -168,10 +168,10 @@ if side_bar_selection in ['SNP500','SNP500-SECTOR','DOW','NASDAQ100']:
             r'last_close-sma_21', r'last_close-sma_50',r'last_close-sma_200',\
         ]
         radio_option_list=apply_conditions+other_conditions
-        sma_radio_option=st.sidebar.radio( 'Features:', radio_option_list,key='misc_parameter_choice')
+        sma_radio_option=st.sidebar.radio( 'Features:', radio_option_list,key='misc_key')
         print(f'parameter-button: {parameter_selection} radio_option: {sma_radio_option}')
-        if 'misc_parameter_choice' not in st.session_state:
-            st.session_state["misc_parameter_choice"] = sma_radio_option  #r'last_close > sma_50 & last_close > sma_200'
+        #if 'misc_parameter_choice' not in st.session_state:
+        #    st.session_state["misc_parameter_choice"] = sma_radio_option  #r'last_close > sma_50 & last_close > sma_200'
 
         #checking if the option is inside the sma_radio_option
         if sma_radio_option in apply_conditions:
