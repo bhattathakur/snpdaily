@@ -27,4 +27,4 @@ if 'dataframe' in st.session_state:
     
     st.dataframe(df)
 else:
-    st.write("PLEASE USE THE SCREENER FIRST")
+    st.warning("PLEASE USE THE SCREENER FIRST",icon="⚠️")
