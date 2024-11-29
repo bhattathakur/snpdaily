@@ -31,7 +31,7 @@ files_list={
 
 
 side_bar_selection=st.sidebar.selectbox('select an option',files_list.keys(),key='index_key')
-st.session_state['side_bar']=side_bar_selection #SESSION_STATE
+st.session_state['sidebar_choice']=side_bar_selection #SESSION_STATE
 #if 'sector_choice' not in st.session_state:
 #    st.session_state["sector_choice"]= side_bar_selection  # Default selection
 
@@ -72,7 +72,7 @@ if side_bar_selection=='SNP500-SECTOR':
     print(f"Debug: {sectors_list}")
     sector_selection=st.sidebar.selectbox('select a sector',sectors_list,index=1,key='sector_key')
     #if 'sector' not in st.session_state:
-    st.session_state["sector"]=sector_selection  # Default selection
+    st.session_state["sector_choice"]=sector_selection  # Default selection #
     print(f'Debug: sector selection: {sector_selection}')
     #print(f"Debug: sector key: {st.session_state['sector']}")
     st.markdown(
@@ -112,7 +112,7 @@ if side_bar_selection in ['SNP500','SNP500-SECTOR','DOW','NASDAQ100']:
 #gainer loser selection in side bar
     parameter_selection=st.sidebar.radio('Parameters:',['Gainer','Loser','SMA-N-MISC'],key='parameter_key')
     #if 'parameter_choice' not in st.session_state:
-    #    st.session_state["parameter_choice"]=parameter_selection# Default sub-parameter
+    st.session_state["parameter_choice"]=parameter_selection# Default sub-parameter
 
     if parameter_selection in ['Gainer','Loser']:
         gainer_radio_option=st.sidebar.radio(
@@ -180,7 +180,7 @@ if side_bar_selection in ['SNP500','SNP500-SECTOR','DOW','NASDAQ100']:
         sma_radio_option=st.sidebar.radio( 'Features:', radio_option_list,key='misc_key')
         print(f'parameter-button: {parameter_selection} radio_option: {sma_radio_option}')
         #if 'misc_parameter_choice' not in st.session_state:
-        #    st.session_state["misc_parameter_choice"] = sma_radio_option  #r'last_close > sma_50 & last_close > sma_200'
+        st.session_state["misc_choice"] = sma_radio_option  #r'last_close > sma_50 & last_close > sma_200'
 
         #checking if the option is inside the sma_radio_option
         if sma_radio_option in apply_conditions:
