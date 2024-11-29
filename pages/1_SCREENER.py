@@ -12,13 +12,13 @@ files_list={
 'DOW':'df_dow.csv',
 }
 if 'sector_choice' not in st.session_state:
-    st.session_state.sector_choice= "SNP500"  # Default selection
+    st.session_state["sector_choice"]= "SNP500"  # Default selection
 if 'parameter_choice' not in st.session_state:
-    st.session_state.parameter_choice = "Gainer"  # Default parameter choice
+    st.session_state["parameter_choice"] = "Gainer"  # Default parameter choice
 if 'date_range_choice' not in st.session_state:
-    st.session_state.date_range_choice= "last_day"  # Default sub-parameter
+    st.session_state["date_range_choice"]= "last_day"  # Default sub-parameter
 if 'misc_parameter_choice' not in st.session_state:
-    st.session_state.misc_parameter_choice = r'last_close > sma_50 & last_close > sma_200'
+    st.session_state["misc_parameter_choice"] = r'last_close > sma_50 & last_close > sma_200'
 
 
 
