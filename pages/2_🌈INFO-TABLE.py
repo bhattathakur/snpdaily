@@ -10,11 +10,11 @@ st.markdown("<h2 style='text-align:center;color:magenta'>Data Frame/Table based 
 #        sub-parameter_choice: {st.session_state['sub_parameter_choice']}
 #        """)
 
-index_value=st.session_state.get('index_key')
-sector_value=st.session_state.get('sector_key')
-daterange_value=st.session_state.get('daterange_key')
-parameter_value=st.session_state.get('parameter_key')
-misc_value=st.session_state.get('misc_key')
+index_value=st.session_state.get('sidebar_choice')
+sector_value=st.session_state.get('sector_choice')
+daterange_value=st.session_state.get('daterange_choice')
+parameter_value=st.session_state.get('parameter_choice')
+misc_value=st.session_state.get('misc_choice')
 st.write(f"index_value: {index_value}")
 st.write(f"sector_value: {sector_value}")
 st.write(f"daterange_value: {daterange_value}")

@@ -121,7 +121,7 @@ if side_bar_selection in ['SNP500','SNP500-SECTOR','DOW','NASDAQ100']:
         print(f'Debug:parameter-button: {parameter_selection} radio_option: {gainer_radio_option}')
 
         #if 'date_range_choice' not in st.session_state:
-        #    st.session_state["date_range_choice"]=gainer_radio_option  # Default sub-parameter
+        st.session_state["daterange_choice"]=gainer_radio_option  # Default sub-parameter
 
         #print(f"Debug: gainer_radio_key{st.session_state.date_range_choice}")
         condition=gainer_loser_key_values[gainer_radio_option]
