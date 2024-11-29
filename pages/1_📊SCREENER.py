@@ -15,10 +15,16 @@ if 'index_key' not in st.session_state:
     st.session_state["index_key"]= "SNP500"  # Default selection
 if 'parameter_key' not in st.session_state:
     st.session_state["parameter_key"] = "Gainer"  # Default parameter choice
-if 'daterange_choice' not in st.session_state:
+if 'daterange_key' not in st.session_state:
     st.session_state["daterange_key"]= "last_day"  # Default sub-parameter
-#if 'misc_parameter_choice' not in st.session_state:
-#    st.session_state["misc_parameter_choice"] = r'last_close > sma_50 & last_close > sma_200'
+if 'sector_key' not in st.session_state:
+    st.session_state["sector_key"]= ""  # Default sub-parameter
+if 'misc_key' not in st.session_state:
+    st.session_state["misc_key"]= ""  # Default sub-parameter
+if 'dataframe' not in st.session_state:
+    st.session_state["dataframe"]= ""  # Default sub-parameter
+if 'misc_parameter_choice' not in st.session_state:
+    st.session_state["misc_parameter_choice"] = r'last_close > sma_50 & last_close > sma_200'
 
 
 
@@ -257,9 +263,12 @@ if side_bar_selection in ['SNP500','SNP500-SECTOR','DOW','NASDAQ100']:
                 # con_df=temp_df.copy()
 
 #applying the session state for con_df for later use
+
 st.session_state['dataframe']=con_df
+
 #st.session_state['fig']=fig
 #fig=st.session_state['fig']
+
 fig.update_traces(hoverlabel=dict(bgcolor='lightblue',font_size=18,font_color='darkblue',font_family='monospace'))
 fig.update_layout(
     font=dict(
