@@ -13,9 +13,12 @@ files_list={
 }
 if 'sector_choice' not in st.session_state:
     st.session_state.sector_choice= "SNP500"  # Default selection
-
 if 'parameter_choice' not in st.session_state:
     st.session_state.parameter_choice = "Gainer"  # Default parameter choice
+if 'date_range_choice' not in st.session_state:
+    st.session_state.date_range_choice= "last_day"  # Default sub-parameter
+if 'misc_parameter_choice' not in st.session_state:
+    st.session_state.misc_parameter_choice = r'last_close > sma_50 & last_close > sma_200'
 
 
 
@@ -97,8 +100,8 @@ if side_bar_selection in ['SNP500','SNP500-SECTOR','DOW','NASDAQ100']:
     parameter_selection=st.sidebar.radio('Parameters:',['Gainer','Loser','SMA-N-MISC'],key='parameter_choice')
 
     if parameter_selection in ['Gainer','Loser']:
-        if 'date_range_choice' not in st.session_state:
-            st.session_state.date_range_choice= "last_day"  # Default sub-parameter
+        #if 'date_range_choice' not in st.session_state:
+        #    st.session_state.date_range_choice= "last_day"  # Default sub-parameter
         gainer_radio_option=st.sidebar.radio(
        'time_range:',
         ('last_day','this_week','this_month','ytd'),key='date_range_choice')
@@ -140,8 +143,8 @@ if side_bar_selection in ['SNP500','SNP500-SECTOR','DOW','NASDAQ100']:
 
 
     if parameter_selection in ['SMA-N-MISC']:
-        if 'misc_parameter_choice' not in st.session_state:
-            st.session_state.misc_parameter_choice = r'last_close > sma_50 & last_close > sma_200'
+        #if 'misc_parameter_choice' not in st.session_state:
+        #    st.session_state.misc_parameter_choice = r'last_close > sma_50 & last_close > sma_200'
         apply_conditions=[
             r'last_close > sma_50 & last_close > sma_200',\
             r'last_close < sma_50 & last_close < sma_200',\
