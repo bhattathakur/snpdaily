@@ -13,7 +13,7 @@ st.markdown("<h2 style='text-align:center;color:magenta'>Data Frame/Table based 
 if 'dataframe' in st.session_state:
     #st.write("Active session_state keys and values:")
     df=st.session_state['dataframe'].reset_index(drop=True) #dictionary
-    #st.write(st.session_state)
+    st.write(st.session_state)
     text_values_list=[]
     for key,value in st.session_state.items():
         if key=='dataframe':continue
