@@ -11,24 +11,27 @@ files_list={
 'NASDAQ100':'df_nasdaq100.csv',
 'DOW':'df_dow.csv',
 }
-if 'index_key' not in st.session_state:
-    st.session_state["index_key"]= "SNP500"  # Default selection
-if 'parameter_key' not in st.session_state:
-    st.session_state["parameter_key"] = "Gainer"  # Default parameter choice
-if 'daterange_key' not in st.session_state:
-    st.session_state["daterange_key"]= "last_day"  # Default sub-parameter
-if 'sector_key' not in st.session_state:
-    st.session_state["sector_key"]= ""  # Default sub-parameter
-if 'misc_key' not in st.session_state:
-    st.session_state["misc_key"]= ""  # Default sub-parameter
-if 'dataframe' not in st.session_state:
-    st.session_state["dataframe"]= ""  # Default sub-parameter
+
+#if 'index_key' not in st.session_state:
+#    st.session_state["index_key"]= "SNP500"  # Default selection
+#if 'parameter_key' not in st.session_state:
+#    st.session_state["parameter_key"] = "Gainer"  # Default parameter choice
+#if 'daterange_key' not in st.session_state:
+#    st.session_state["daterange_key"]= "last_day"  # Default sub-parameter
+#if 'sector_key' not in st.session_state:
+#    st.session_state["sector_key"]= ""  # Default sub-parameter
+#if 'misc_key' not in st.session_state:
+#    st.session_state["misc_key"]= ""  # Default sub-parameter
+#if 'dataframe' not in st.session_state:
+#    st.session_state["dataframe"]= ""  # Default sub-parameter
+
 #if 'misc_parameter_choice' not in st.session_state:
 #    st.session_state["misc_parameter_choice"] = r'last_close > sma_50 & last_close > sma_200'
 
 
 
 side_bar_selection=st.sidebar.selectbox('select an option',files_list.keys(),key='index_key')
+st.session_state['side_bar']=side_bar_selection #SESSION_STATE
 #if 'sector_choice' not in st.session_state:
 #    st.session_state["sector_choice"]= side_bar_selection  # Default selection
 
@@ -69,7 +72,7 @@ if side_bar_selection=='SNP500-SECTOR':
     print(f"Debug: {sectors_list}")
     sector_selection=st.sidebar.selectbox('select a sector',sectors_list,index=1,key='sector_key')
     #if 'sector' not in st.session_state:
-    #    st.session_state["sector"]=sector_selection  # Default selection
+    st.session_state["sector"]=sector_selection  # Default selection
     print(f'Debug: sector selection: {sector_selection}')
     #print(f"Debug: sector key: {st.session_state['sector']}")
     st.markdown(
