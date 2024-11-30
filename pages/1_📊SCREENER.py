@@ -114,7 +114,7 @@ gainer_loser_key_values={\
 if side_bar_selection in ['SNP500','SNP500-SECTOR','DOW','NASDAQ100']:
 #gainer loser selection in side bar
     parameter_selection=st.sidebar.radio('Parameters:',['Gainer','Loser','SMA-N-MISC'],key='parameter_key')
-    #if parameter_selection:title_template+=parameter_selection+" ||"
+    if parameter_selection in ['Gainer','Loser']:title_template+=parameter_selection+" || "
     #if 'parameter_choice' not in st.session_state:
     st.session_state["parameter_choice"]=parameter_selection# Default sub-parameter
 
