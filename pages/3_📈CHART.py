@@ -50,7 +50,7 @@ sma50_data=go.Scatter(x=df['Date'],y=df['SMA_50'],mode='lines',name='SMA50',line
 sma200_data=go.Scatter(x=df['Date'],y=df['SMA_200'],mode='lines',name='SMA200',line=dict(color='red',width=2))
 vwap_data=go.Scatter(x=df['Date'],y=df['VWAP'],mode='lines',name='VWAP',line=dict(color='orange',width=2))
 #container 1
-st.markdown(f"<h3 style='text-align:center;color:red'>ONE YEAR CHART & INFO FOR {ticker} </h3>",unsafe_allow_html=True)
+st.markdown(f"<h3 style='text-align:center;color:red'>ONE YEAR CHART & ALl INFOS FOR {ticker} </h3>",unsafe_allow_html=True)
 with st.container():
     fig=go.Figure(data=data)
     fig.add_trace(sma5_data)
@@ -77,7 +77,7 @@ with st.container():
 
 #read the information file
 df_info=pd.read_csv('df_combined.csv').query('ticker==@ticker')
-print(df_info)
+#print(df_info)
 #Convert the single row into a nicely formatted string
 row_dict = df_info.iloc[0].to_dict()  # Convert the row to a dictionary
 
@@ -95,11 +95,11 @@ with st.container():
         if idx % 3 == 0:  # First column
             col1.markdown(f"<p style='color:orchid;font-size:20px;font-weight:bold;font-family:monospace'>{key:.<24}: {value}</p>",unsafe_allow_html=True)
         elif idx % 3 == 1:  # Second column
-            col2.markdown(f"<p style='color:cyna;font-size:20px;font-weight:bold;font-family:monospace'>{key:.<24}: {value}</p>",unsafe_allow_html=True)
+            col2.markdown(f"<p style='color:lightgreen;font-size:20px;font-weight:bold;font-family:monospace'>{key:.<24}: {value}</p>",unsafe_allow_html=True)
             #col2.markdown(f"**{key}:** {value}")
         else:  # Third column
             #col3.markdown(f"**{key}:** {value}")
-            col3.markdown(f"<p style='color:lightgreen;font-size:20px;font-weight:bold;font-family:monospace'>{key:.<24}: {value}</p>",unsafe_allow_html=True)
+            col3.markdown(f"<p style='color:salmon;font-size:20px;font-weight:bold;font-family:monospace'>{key:.<24}: {value}</p>",unsafe_allow_html=True)
 #st.markdown("### User Details")
 st.markdown("\ncontact info: bhattathakur2015@gmail.com")
 #st.markdown(formatted_text)

@@ -39,12 +39,12 @@ st.session_state['sidebar_choice']=side_bar_selection #SESSION_STATE
 
 #print(f'Debug:key:sector_choice: {st.session_state.sector_choice}')
 
-print(f'Debug:side_bar_selection: {side_bar_selection}') 
+#print(f'Debug:side_bar_selection: {side_bar_selection}') 
 
 
 #load master df
 data_file=files_list[side_bar_selection]
-print(f'Debug: data_file: {data_file}')
+#print(f'Debug: data_file: {data_file}')
 df_main=pd.read_csv(data_file) #read a file
 
 #change up_3_days and down_3_days into bool
@@ -58,7 +58,7 @@ df_main['fiftytwoweek_low']=(df_main['last_close']==df_main['fiftytwo_week_low']
 df_main['fiftytwoweek_high']=(df_main['last_close']==df_main['fiftytwo_week_high'])
 
 last_date=df_main['last_date'].values[0]
-print(f'Debug: Last Date: {last_date}')
+#print(f'Debug: Last Date: {last_date}')
 #st.header(f'SNP500 OVERVIEW [{last_date}]')
 st.markdown(
 f"<h4 style='text-align:center'> {side_bar_selection} OVERVIEW [{last_date}]</h4>",
@@ -71,12 +71,12 @@ hover_data=['ticker','last_close','last_change_pct','sma_21','sma_50','sma_200',
 
 if side_bar_selection=='SNP500-SECTOR':
     sectors_list=pd.unique(df_main['sector']) #select a sector
-    print(f"Debug: {sectors_list}")
+    #print(f"Debug: {sectors_list}")
     sector_selection=st.sidebar.selectbox('select a sector',sectors_list,index=1,key='sector_key')
     if sector_selection:title_template+=sector_selection+" || "
     #if 'sector' not in st.session_state:
     st.session_state["sector_choice"]=sector_selection  # Default selection #
-    print(f'Debug: sector selection: {sector_selection}')
+    #print(f'Debug: sector selection: {sector_selection}')
     #print(f"Debug: sector key: {st.session_state['sector']}")
     st.markdown(
         f"<h5 style='text-align:center;color:darkorchid;'>{sector_selection}</h5>",
@@ -122,7 +122,7 @@ if side_bar_selection in ['SNP500','SNP500-SECTOR','DOW','NASDAQ100']:
         gainer_radio_option=st.sidebar.radio(
        'time_range:',
         ('last_day','this_week','this_month','ytd'),key='daterange_key')
-        print(f'Debug:parameter-button: {parameter_selection} radio_option: {gainer_radio_option}')
+        #print(f'Debug:parameter-button: {parameter_selection} radio_option: {gainer_radio_option}')
         if gainer_radio_option:title_template+=gainer_radio_option+" || "
 
         #if 'date_range_choice' not in st.session_state:
@@ -130,7 +130,7 @@ if side_bar_selection in ['SNP500','SNP500-SECTOR','DOW','NASDAQ100']:
 
         #print(f"Debug: gainer_radio_key{st.session_state.date_range_choice}")
         condition=gainer_loser_key_values[gainer_radio_option]
-        print(f'condition: {condition}')
+        #print(f'condition: {condition}')
         ascending=True
         if parameter_selection=='Gainer':ascending=False
         con_df=get_filtered_df(condition=condition,ascending=ascending)
@@ -184,19 +184,19 @@ if side_bar_selection in ['SNP500','SNP500-SECTOR','DOW','NASDAQ100']:
         radio_option_list=apply_conditions+other_conditions
         sma_radio_option=st.sidebar.radio( 'Features:', radio_option_list,key='misc_key')
         if sma_radio_option:title_template+=sma_radio_option+" ||"
-        print(f'parameter-button: {parameter_selection} radio_option: {sma_radio_option}')
+        #print(f'parameter-button: {parameter_selection} radio_option: {sma_radio_option}')
         #if 'misc_parameter_choice' not in st.session_state:
         st.session_state["misc_choice"] = sma_radio_option  #r'last_close > sma_50 & last_close > sma_200'
 
         #checking if the option is inside the sma_radio_option
         if sma_radio_option in apply_conditions:
-            print(f'Debug: inside apply_condition')
+            #print(f'Debug: inside apply_condition')
             con_df=temp_df.query(sma_radio_option).sort_values(by='last_close').reset_index(drop=True)
             #st.subheader(f'{sma_radio_option.upper()}')
 
             #NOTE: using the index position to give the color of the bar plots
             index_of_radio_option=apply_conditions.index(sma_radio_option)
-            print(f'Debug: index_of_radio_option: {index_of_radio_option}')
+            #print(f'Debug: index_of_radio_option: {index_of_radio_option}')
             h2_color='SlateBlue' #'red' if 'down' or 'low' in sma_radio_option else 'lightgreen'
             marker_color='red' if index_of_radio_option%2==1  else 'lightgreen'
             st.markdown(
@@ -237,7 +237,7 @@ if side_bar_selection in ['SNP500','SNP500-SECTOR','DOW','NASDAQ100']:
                 par=sma_radio_option
                 sma_part=par.split('-')[1]
                 last_close_part=par.split('-')[0]
-                print(f"Debug: sma_radio_option: {par}\n sma_part: {sma_part}")
+               #print(f"Debug: sma_radio_option: {par}\n sma_part: {sma_part}")
                 temp_df[par]=temp_df['last_close']-temp_df[sma_part]
                 #temp_df['last_close-sma_21']=temp_df['last_close']-temp_df['sma_21']
                 st.markdown(
