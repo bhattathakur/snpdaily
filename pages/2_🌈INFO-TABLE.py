@@ -10,30 +10,31 @@ st.markdown("<h2 style='text-align:center;color:magenta'>Data Frame/Table based 
 #        sub-parameter_choice: {st.session_state['sub_parameter_choice']}
 #        """)
 
-index_value=st.session_state.get('sidebar_choice')
-sector_value=st.session_state.get('sector_choice')
-daterange_value=st.session_state.get('daterange_choice')
-parameter_value=st.session_state.get('parameter_choice')
-misc_value=st.session_state.get('misc_choice')
-st.write(f"index_value: {index_value}")
-st.write(f"sector_value: {sector_value}")
-st.write(f"daterange_value: {daterange_value}")
-st.write(f"parameter_value: {parameter_value}")
-st.write(f"misc_value: {misc_value}")
+#index_value=st.session_state.get('sidebar_choice')
+#sector_value=st.session_state.get('sector_choice')
+#daterange_value=st.session_state.get('daterange_choice')
+#parameter_value=st.session_state.get('parameter_choice')
+#misc_value=st.session_state.get('misc_choice')
+#st.write(f"index_value: {index_value}")
+#st.write(f"sector_value: {sector_value}")
+#st.write(f"daterange_value: {daterange_value}")
+#st.write(f"parameter_value: {parameter_value}")
+#st.write(f"misc_value: {misc_value}")
 
 if 'dataframe' in st.session_state:
     #st.write("Active session_state keys and values:")
     df=st.session_state['dataframe'].reset_index(drop=True) #dictionary
-    st.write(st.session_state)
-    text_values_list=[]
-    for key,value in st.session_state.items():
-        if key=='dataframe':continue
-        if value=='SMA-N-MISC':continue
-        text_values_list.append(value)
-        #st.write(f"{key}->{value}\n")
-    ##st.write(text_values_list)
+    info_text=st.session_state.get('tabletitle')
+    #st.write(st.session_state)
+    #text_values_list=[]
+    #for key,value in st.session_state.items():
+    #    if key=='dataframe':continue
+    #    if value=='SMA-N-MISC':continue
+    #    text_values_list.append(value)
+    #    #st.write(f"{key}->{value}\n")
+    ###st.write(text_values_list)
     ##text_values_text="|".join(text_values_list)
-    info_text="".join(['| '+f'{i.upper()}'+' |' for i in text_values_list])
+    #info_text="".join(['| '+f'{i.upper()}'+' |' for i in text_values_list])
     #info_text='test'
     df.index=range(1,len(df)+1)
     st.markdown(f"<h4 style='text-align:center;color:SlateBlue'>{info_text}</h4>",unsafe_allow_html=True)

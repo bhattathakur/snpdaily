@@ -28,9 +28,11 @@ files_list={
 #if 'misc_parameter_choice' not in st.session_state:
 #    st.session_state["misc_parameter_choice"] = r'last_close > sma_50 & last_close > sma_200'
 
-
+title_template="|| "
 
 side_bar_selection=st.sidebar.selectbox('select an option',files_list.keys(),key='index_key')
+if side_bar_selection:title_template+=side_bar_selection+" || "
+
 st.session_state['sidebar_choice']=side_bar_selection #SESSION_STATE
 #if 'sector_choice' not in st.session_state:
 #    st.session_state["sector_choice"]= side_bar_selection  # Default selection
@@ -71,6 +73,7 @@ if side_bar_selection=='SNP500-SECTOR':
     sectors_list=pd.unique(df_main['sector']) #select a sector
     print(f"Debug: {sectors_list}")
     sector_selection=st.sidebar.selectbox('select a sector',sectors_list,index=1,key='sector_key')
+    if sector_selection:title_template+=sector_selection+" || "
     #if 'sector' not in st.session_state:
     st.session_state["sector_choice"]=sector_selection  # Default selection #
     print(f'Debug: sector selection: {sector_selection}')
@@ -111,6 +114,7 @@ gainer_loser_key_values={\
 if side_bar_selection in ['SNP500','SNP500-SECTOR','DOW','NASDAQ100']:
 #gainer loser selection in side bar
     parameter_selection=st.sidebar.radio('Parameters:',['Gainer','Loser','SMA-N-MISC'],key='parameter_key')
+    #if parameter_selection:title_template+=parameter_selection+" ||"
     #if 'parameter_choice' not in st.session_state:
     st.session_state["parameter_choice"]=parameter_selection# Default sub-parameter
 
@@ -119,6 +123,7 @@ if side_bar_selection in ['SNP500','SNP500-SECTOR','DOW','NASDAQ100']:
        'time_range:',
         ('last_day','this_week','this_month','ytd'),key='daterange_key')
         print(f'Debug:parameter-button: {parameter_selection} radio_option: {gainer_radio_option}')
+        if gainer_radio_option:title_template+=gainer_radio_option+" || "
 
         #if 'date_range_choice' not in st.session_state:
         st.session_state["daterange_choice"]=gainer_radio_option  # Default sub-parameter
@@ -178,6 +183,7 @@ if side_bar_selection in ['SNP500','SNP500-SECTOR','DOW','NASDAQ100']:
         ]
         radio_option_list=apply_conditions+other_conditions
         sma_radio_option=st.sidebar.radio( 'Features:', radio_option_list,key='misc_key')
+        if sma_radio_option:title_template+=sma_radio_option+" ||"
         print(f'parameter-button: {parameter_selection} radio_option: {sma_radio_option}')
         #if 'misc_parameter_choice' not in st.session_state:
         st.session_state["misc_choice"] = sma_radio_option  #r'last_close > sma_50 & last_close > sma_200'
@@ -267,7 +273,14 @@ if side_bar_selection in ['SNP500','SNP500-SECTOR','DOW','NASDAQ100']:
 
 #applying the session state for con_df for later use
 
+#find the string for data table
+
+#st.write(f"{title_template.upper()}")
+
+
+
 st.session_state['dataframe']=con_df
+st.session_state['tabletitle']=title_template.upper()
 
 #st.session_state['fig']=fig
 #fig=st.session_state['fig']
