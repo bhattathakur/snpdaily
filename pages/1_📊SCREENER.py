@@ -170,6 +170,8 @@ if side_bar_selection in ['SNP500','SNP500-SECTOR','DOW','NASDAQ100']:
         apply_conditions=[
             r'last_close > sma_50 & last_close > sma_200',\
             r'last_close < sma_50 & last_close < sma_200',\
+            r'last_close > sma_5 & last_close > sma_10',\
+            r'last_close < sma_5 & last_close < sma_10',\
             r'fiftytwoweek_high',r'fiftytwoweek_low',\
             f'up_3_days',\
             f'down_3_days'
