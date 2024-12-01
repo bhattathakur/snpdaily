@@ -4,24 +4,6 @@ st.set_page_config(layout='wide')
 
 st.markdown("<h2 style='text-align:center;color:magenta'>Data Frame/Table based on the condition on the SCREENER</h2>",unsafe_allow_html=True)
 
-#states from main page:
-#st.write(f"""
-#        sector_choice: {st.session_state['sector_choice']}
-#        parameter_choice: {st.session_state['parameter_choice']}
-#        sub-parameter_choice: {st.session_state['sub_parameter_choice']}
-#        """)
-
-#index_value=st.session_state.get('sidebar_choice')
-#sector_value=st.session_state.get('sector_choice')
-#daterange_value=st.session_state.get('daterange_choice')
-#parameter_value=st.session_state.get('parameter_choice')
-#misc_value=st.session_state.get('misc_choice')
-#st.write(f"index_value: {index_value}")
-#st.write(f"sector_value: {sector_value}")
-#st.write(f"daterange_value: {daterange_value}")
-#st.write(f"parameter_value: {parameter_value}")
-#st.write(f"misc_value: {misc_value}")
-
 # Function to boldface all text
 def bold_text(df):
     return df.style.applymap(lambda x: f"font-weight: bold;")
@@ -34,34 +16,6 @@ def color_value(x):
 def style_cells(value):
     return 'font-size: 14px; font-weight: bold; text-align: center;'
 
-#table style
-table_style= [
-        {
-            'selector': 'th',  # Header cells
-            'props': [
-                ('font-family', 'Arial'),  # Font type
-                ('font-size', '16px'),  # Font size 
-                ('font-weight', 'bold'),  # Bold header text
-                ('text-align', 'center')  # Center-align text
-            ]
-        },
-        {
-            'selector': 'td',  # Data cells
-            'props': [
-                ('font-family', 'Courier New'),  # Font type
-                ('font-size', '30px'),  # Font size 
-                ('font-weight', 'bold'),  # Regular font weight
-                ('text-align', 'center')  # Right-align text
-            ]
-        },
-        {
-            'selector': 'table',  # Whole table
-            'props': [
-                ('border', '2px solid black'),  # Border for the table
-                ('width', '100%')  # Full width
-            ]
-        }
-    ]
     
 
 if 'dataframe' in st.session_state:
@@ -82,7 +36,7 @@ if 'dataframe' in st.session_state:
             .set_properties(subset=yellow_columns,**yellow_highlight)\
             .set_properties(subset=['ticker'],**green_highlight)\
             .set_properties(subset=[all_columns[1]],**yellow_highlight)\
-            .applymap(color_value,subset=color_columns)\
+            .map(color_value,subset=color_columns)\
             .format(precision=2))
     #st.dataframe(df.style.set_properties(subset=['ticker'],**green_highlight).format(precision=2))
     #st.markdown(df,unsafe_allow_html=True)
