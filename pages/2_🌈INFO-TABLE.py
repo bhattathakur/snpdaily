@@ -73,15 +73,15 @@ if 'dataframe' in st.session_state:
     st.markdown(f"<h4 style='text-align:center;color:SlateBlue'>{info_text}</h4>",unsafe_allow_html=True)
     all_cols={'font-size:15px;font-weight:bold;text-align:center;'}
     yellow_highlight={'background-color':'yellow'}
-    green_highlight={'background-color':'#D6F39B'}
-    secondcol_highlight={'background-color':'#E8E8E8','font-weight':'35px'}
+    green_highlight={'background-color':'#4285F4'}
+    secondcol_highlight={'background-color':'#ffffcc','font-weight':'35px'}
     yellow_columns=[i for i in all_columns if i.startswith('sma')]
     color_columns=[i for i in all_columns if 'pct' in i]
     st.dataframe(df.style\
             #.applymap(style_cells)\
             .set_properties(subset=yellow_columns,**yellow_highlight)\
             .set_properties(subset=['ticker'],**green_highlight)\
-            .set_properties(subset=[all_columns[1]],**secondcol_highlight)\
+            .set_properties(subset=[all_columns[1]],**yellow_highlight)\
             .applymap(color_value,subset=color_columns)\
             .format(precision=2))
     #st.dataframe(df.style.set_properties(subset=['ticker'],**green_highlight).format(precision=2))
