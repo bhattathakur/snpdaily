@@ -14,6 +14,7 @@ custom_css = """
 
 # Inject custom CSS into Streamlit app
 st.markdown(custom_css, unsafe_allow_html=True)
+st.snow()
 
 
 

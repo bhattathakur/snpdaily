@@ -286,6 +286,7 @@ st.session_state['tabletitle']=title_template.upper()
 
 #st.session_state['fig']=fig
 #fig=st.session_state['fig']
+fig.update_layout(yaxis_title=fig.layout.yaxis.title.text.upper(),xaxis_title=fig.layout.xaxis.title.text.upper())
 
 fig.update_traces(hoverlabel=dict(bgcolor='lightblue',font_size=18,font_color='darkblue',font_family='monospace'))
 fig.update_layout(
@@ -295,10 +296,16 @@ fig.update_layout(
         color="black"
     )
 )
+template='plotly_dark'
 fig.update_layout(
-    xaxis=dict(titlefont=dict(family="Arial Bold", size=20,color="black"),tickfont=dict(size=10,color='brown')),
-    yaxis=dict(titlefont=dict(family="Arial Bold", size=20,color="black"))
+        template=template,
+    xaxis=dict(titlefont=dict(family="Arial Bold", size=20,color="cyan"),tickfont=dict(family='Times New Roman,bold',size=15,color='brown')),
+    yaxis=dict(titlefont=dict(family="Arial Bold", size=20,color="cyan"))
 )
+yaxis_title=fig.layout.yaxis.title.text
+#fig.update_layout(yaxis_title=fig.layout.yaxis.title.text.upper(),xaxis_title=fig.layout.xaxis.title.text.upper())
+#print(f'yaxis_title:{yaxis_title}')
+fig.update_layout(width=1200,height=750)
 
 
 st.plotly_chart(fig,use_container_width=True)

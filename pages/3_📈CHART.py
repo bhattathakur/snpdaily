@@ -63,13 +63,13 @@ with st.container():
     width=1000,
     height=600,
     xaxis_title="Date",
-    yaxis_title="Price ($)",
-    #xaxis=dict(tickmode='linear')#,dtick='D1')
-    #title="Plot Title",
-    #title_font=dict(size=24, family="Arial", color="blue"),  # Title font
-    #xaxis_title_font=dict(size=18, family="Verdana", color="green"),  # X-axis label font
-    #yaxis_title_font=dict(size=18, family="Verdana", color="green"),  # Y-axis label font
-)
+    yaxis_title="Price ($)",)
+
+    fig.update_xaxes(
+            rangebreaks=[
+                dict(bounds=['sat','mon']) #hide weekends
+                ]
+            )
 
     #show chart
     st.plotly_chart(fig,use_container_width=True)
