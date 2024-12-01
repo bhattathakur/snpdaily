@@ -1,4 +1,5 @@
 import streamlit as st
+import pandas as pd
 st.set_page_config(layout='wide')
 
 # Define custom CSS for styling text
@@ -16,6 +17,15 @@ custom_css = """
 st.markdown(custom_css, unsafe_allow_html=True)
 st.snow()
 
+# warning and disclaimer
+last_date=pd.read_csv('df_combined.csv')['last_date'].iloc[0]
+last_day_name=pd.to_datetime(last_date).strftime('%A')
+disclaimer_text="""
+Disclaimer:
+The information provided by this stock screener is for informational purposes only and should not be considered as financial advice, investment advice, or trading suggestions. All data and analysis are provided "as is" and without any guarantees of accuracy or completeness. Users are solely responsible for their investment decisions. Always conduct your own research and consult with a licensed financial advisor before making any investment decisions.
+"""
+st.warning(disclaimer_text,icon="⚠️")
+st.warning(f'RESULTS ARE BASED ON LAST-TRADING DAY: {last_date}, {last_day_name} ',icon="⚠️")
 
 
 st.markdown(f"<h2 style='text-align:center;color:magenta;font-weight:bold;font-family:monospace;font-size:35px'>SIMPLE SCREENER, CHART & INFORMATION</h2>",unsafe_allow_html=True)

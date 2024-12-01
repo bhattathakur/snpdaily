@@ -48,8 +48,9 @@ data_file=files_list[side_bar_selection]
 df_main=pd.read_csv(data_file) #read a file
 
 #change up_3_days and down_3_days into bool
-df_main['up_3_days']=df_main['up_3_days'].astype(bool)
-df_main['down_3_days']=df_main['down_3_days'].astype(bool)
+#already bool now
+#df_main['up_3_days']=df_main['up_3_days'].astype(bool)
+#df_main['down_3_days']=df_main['down_3_days'].astype(bool)
 
 #print head of a file
 #st.write(df_main.head(5))
@@ -58,6 +59,8 @@ df_main['fiftytwoweek_low']=(df_main['last_close']==df_main['fiftytwo_week_low']
 df_main['fiftytwoweek_high']=(df_main['last_close']==df_main['fiftytwo_week_high'])
 
 last_date=df_main['last_date'].values[0]
+#store last_date in st.session for use
+st.session_state['last_date']=last_date
 #print(f'Debug: Last Date: {last_date}')
 #st.header(f'SNP500 OVERVIEW [{last_date}]')
 st.markdown(
