@@ -1,4 +1,5 @@
 import streamlit as st
+import numpy as np
 st.set_page_config(layout='wide')
 
 st.markdown("<h2 style='text-align:center;color:magenta'>Data Frame/Table based on the condition on the SCREENER</h2>",unsafe_allow_html=True)
@@ -21,24 +22,71 @@ st.markdown("<h2 style='text-align:center;color:magenta'>Data Frame/Table based 
 #st.write(f"parameter_value: {parameter_value}")
 #st.write(f"misc_value: {misc_value}")
 
+# Function to boldface all text
+def bold_text(df):
+    return df.style.applymap(lambda x: f"font-weight: bold;")
+
+# highlightcolor
+def color_value(x):
+    return f'color:green;' if x>0 else f'color:red;'
+
+# Styling function to change text size, orientation, and weight
+def style_cells(value):
+    return 'font-size: 14px; font-weight: bold; text-align: center;'
+
+#table style
+table_style= [
+        {
+            'selector': 'th',  # Header cells
+            'props': [
+                ('font-family', 'Arial'),  # Font type
+                ('font-size', '16px'),  # Font size 
+                ('font-weight', 'bold'),  # Bold header text
+                ('text-align', 'center')  # Center-align text
+            ]
+        },
+        {
+            'selector': 'td',  # Data cells
+            'props': [
+                ('font-family', 'Courier New'),  # Font type
+                ('font-size', '30px'),  # Font size 
+                ('font-weight', 'bold'),  # Regular font weight
+                ('text-align', 'center')  # Right-align text
+            ]
+        },
+        {
+            'selector': 'table',  # Whole table
+            'props': [
+                ('border', '2px solid black'),  # Border for the table
+                ('width', '100%')  # Full width
+            ]
+        }
+    ]
+    
+
 if 'dataframe' in st.session_state:
     #st.write("Active session_state keys and values:")
     df=st.session_state['dataframe'].reset_index(drop=True) #dictionary
     info_text=st.session_state.get('tabletitle')
-    #st.write(st.session_state)
-    #text_values_list=[]
-    #for key,value in st.session_state.items():
-    #    if key=='dataframe':continue
-    #    if value=='SMA-N-MISC':continue
-    #    text_values_list.append(value)
-    #    #st.write(f"{key}->{value}\n")
-    ###st.write(text_values_list)
-    ##text_values_text="|".join(text_values_list)
-    #info_text="".join(['| '+f'{i.upper()}'+' |' for i in text_values_list])
-    #info_text='test'
     df.index=range(1,len(df)+1)
+    all_columns=df.columns.to_list()
     st.markdown(f"<h4 style='text-align:center;color:SlateBlue'>{info_text}</h4>",unsafe_allow_html=True)
+    all_cols={'font-size:15px;font-weight:bold;text-align:center;'}
+    yellow_highlight={'background-color':'yellow'}
+    green_highlight={'background-color':'#D6F39B'}
+    secondcol_highlight={'background-color':'#E8E8E8','font-weight':'35px'}
+    yellow_columns=[i for i in all_columns if i.startswith('sma')]
+    color_columns=[i for i in all_columns if 'pct' in i]
+    st.dataframe(df.style\
+            #.applymap(style_cells)\
+            .set_properties(subset=yellow_columns,**yellow_highlight)\
+            .set_properties(subset=['ticker'],**green_highlight)\
+            .set_properties(subset=[all_columns[1]],**secondcol_highlight)\
+            .applymap(color_value,subset=color_columns)\
+            .format(precision=2))
+    #st.dataframe(df.style.set_properties(subset=['ticker'],**green_highlight).format(precision=2))
+    #st.markdown(df,unsafe_allow_html=True)
     
-    st.dataframe(df)
+    #st.dataframe(df.style.background_gradient(axis=None).format(precision=2))
 else:
     st.warning("PLEASE USE THE SCREENER FIRST",icon="⚠️")
