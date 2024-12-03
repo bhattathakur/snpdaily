@@ -2,7 +2,7 @@ import streamlit as st
 import numpy as np
 st.set_page_config(layout='wide')
 
-st.markdown("<h2 style='text-align:center;color:magenta'>Data Frame/Table based on the condition on the SCREENER</h2>",unsafe_allow_html=True)
+st.markdown("<h3 style='text-align:center;color:magenta'>Data Frame/Table based on the condition on the SCREENER</h3>",unsafe_allow_html=True)
 
 # Function to boldface all text
 def bold_text(df):
@@ -22,7 +22,10 @@ if 'dataframe' in st.session_state:
     #st.write("Active session_state keys and values:")
     df=st.session_state['dataframe'].reset_index(drop=True) #dictionary
     info_text=st.session_state.get('tabletitle')
-    df.index=range(1,len(df)+1)
+    df.index=range(1,len(df)+1)#     + df['ticker']
+    new_index=df.index.astype(str)+'-'+df['ticker'].astype(str)
+    #st.write(f'DEBUG: new_index: {new_index}')
+    df.index=new_index
     all_columns=df.columns.to_list()
     st.markdown(f"<h4 style='text-align:center;color:SlateBlue'>{info_text}</h4>",unsafe_allow_html=True)
     all_cols={'font-size:15px;font-weight:bold;text-align:center;'}
@@ -37,7 +40,7 @@ if 'dataframe' in st.session_state:
             .set_properties(subset=['ticker'],**green_highlight)\
             .set_properties(subset=[all_columns[1]],**yellow_highlight)\
             .map(color_value,subset=color_columns)\
-            .format(precision=2))
+            .format(precision=2),use_container_width=True,height=600)
     #st.dataframe(df.style.set_properties(subset=['ticker'],**green_highlight).format(precision=2))
     #st.markdown(df,unsafe_allow_html=True)
     
