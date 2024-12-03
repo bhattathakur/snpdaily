@@ -4,6 +4,10 @@ st.set_page_config(layout='wide')
 
 st.markdown("<h3 style='text-align:center;color:magenta'>Data Frame/Table based on the condition on the SCREENER</h3>",unsafe_allow_html=True)
 
+#last date
+last_date=st.session_state.get('last_date')
+st.sidebar.info(f"RESULTS BASED ON {last_date}",icon="ℹ️")
+
 # Function to boldface all text
 def bold_text(df):
     return df.style.applymap(lambda x: f"font-weight: bold;")

@@ -281,7 +281,8 @@ if side_bar_selection in ['SNP500','SNP500-SECTOR','DOW','NASDAQ100']:
 #find the string for data table
 
 #st.write(f"{title_template.upper()}")
-
+#side bar with information about the last trading day and current time
+st.sidebar.info(f"RESULTS BASED ON {last_date}",icon="ℹ️")
 
 
 st.session_state['dataframe']=con_df

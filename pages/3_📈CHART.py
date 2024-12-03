@@ -8,6 +8,7 @@ import sys
 st.set_page_config(layout='wide')
 st.balloons()
 
+
 #all_ticker_data_file
 
 data_file='one_year_combined_df.csv'
@@ -29,6 +30,7 @@ if ticker not in unique_tickers:
     sys.exit(1)
 else:
     df=temp_df[temp_df['ticker']==ticker].sort_values(by=['Date']).reset_index(drop=True)
+    last_date=df['Date'].iloc[-1].split()[0]#.values[0]
     df['SMA_5'] = df['Close'].rolling(5).mean()
     df['SMA_10'] = df['Close'].rolling(10).mean()
     df['SMA_50'] = df['Close'].rolling(50).mean()
@@ -104,5 +106,6 @@ with st.container():
 #st.markdown("### User Details")
 st.markdown("\ncontact info: bhattathakur2015@gmail.com")
 #st.markdown(formatted_text)
-
+#last_date=st.session_state.get('last_date')
+st.sidebar.info(f"RESULTS BASED ON {last_date}",icon="ℹ️")
 
