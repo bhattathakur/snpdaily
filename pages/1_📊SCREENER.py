@@ -69,7 +69,7 @@ unsafe_allow_html=True
 )
 
 #cteate a stramlit 
-hover_data=['ticker','last_close','last_change_pct','sma_21','sma_50','sma_200',\
+hover_data=['ticker','last_close','last_change_pct','last_change','sma_21','sma_50','sma_200',\
             'fiftytwo_week_high','fiftytwo_week_low','pct_change_latest_week','pct_change_latest_month','pct_change_latest_year']
 
 if side_bar_selection=='SNP500-SECTOR':
