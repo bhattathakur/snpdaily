@@ -10,7 +10,7 @@ custom_css = """
 <style>
 .hoverlayer {
     border-radius: 10px !important; /* Rounded corners */
-    border: 2px solid black;       /* Optional: Add a border */
+    border: 20px solid black;       /* Optional: Add a border */
     background-color: white;       /* Optional: Background color */
 }
 </style>
