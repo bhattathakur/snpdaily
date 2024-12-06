@@ -4,6 +4,19 @@ import plotly.express as px
 import pandas as pd
 
 st.set_page_config(layout="wide")  # Enable wide mode
+# rounded corner in hover data
+# Inject custom CSS for rounded corners
+custom_css = """
+<style>
+.hoverlayer {
+    border-radius: 10px !important; /* Rounded corners */
+    border: 2px solid black;       /* Optional: Add a border */
+    background-color: white;       /* Optional: Background color */
+}
+</style>
+"""
+st.markdown(custom_css, unsafe_allow_html=True)
+
 #data files sources
 files_list={
 'SNP500':'df_snp500.csv',
