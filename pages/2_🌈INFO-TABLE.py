@@ -37,7 +37,7 @@ if 'dataframe' in st.session_state:
     green_highlight={'background-color':'#4285F4'}
     secondcol_highlight={'background-color':'#ffffcc','font-weight':'35px'}
     yellow_columns=[i for i in all_columns if i.startswith('sma')]
-    color_columns=[i for i in all_columns if 'pct' in i]
+    color_columns=[i for i in all_columns if 'change' in i]
     st.dataframe(df.style\
             #.applymap(style_cells)\
             .set_properties(subset=yellow_columns,**yellow_highlight)\
