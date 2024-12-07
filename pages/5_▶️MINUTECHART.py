@@ -60,9 +60,9 @@ except:
 
 #this is needed if using the online services like google colab
 if debug:st.write(temp_df)
-#temp_df=temp_df[ticker].reset_index(drop=False)
+temp_df=temp_df[ticker].reset_index(drop=False)
 
-temp_df=temp_df.reset_index(drop=False)
+#temp_df=temp_df.reset_index(drop=False)
 
 if debug:st.write(temp_df)
 
