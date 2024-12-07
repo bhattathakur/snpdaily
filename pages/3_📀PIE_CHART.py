@@ -36,13 +36,13 @@ if 'dataframe' in st.session_state:
     pie_df=df.copy().head(30)
     all_columns=pie_df.columns.to_list()
     yvalues=pie_df.iloc[:,1]
-    fig=px.pie(pie_df,values=yvalues.abs(),names='ticker',hover_data=[all_columns[1]])
+    fig=px.pie(pie_df,values=yvalues.abs().round(2),names='ticker',hover_data=[all_columns[1]])
     fig.update_traces(textposition='inside',textinfo='label')
     fig.update_traces(hovertemplate='%{label}<extra></extra>')
     # Customize hover template to include label and second column
     fig.update_traces(
     hovertemplate='TICKER: %{label}<br>'+all_columns[1].upper()+': %{customdata[0]}<extra></extra>',
-    customdata=pie_df[all_columns[1]]# Pass the second column to customdata
+    customdata=pie_df[all_columns[1]].round(2)# Pass the second column to customdata
     )
     fig.update_layout(width=800,height=800)
     fig.update_layout(
