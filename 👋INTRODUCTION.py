@@ -41,6 +41,7 @@ st.markdown("""
 8. The indicator tracks stocks that are making higher or lower closes over a 3-day period, highlighting potential short-term trends.<br>
 9. The CHART feature generates a yearly chart for given ticker and provides ALL-TIME key information about the stock’s performance.
 10. Pie chart is also helpful to visualize the parameter change over the time.
+11. This screener also features a 1 minute CandleStick Chart for last FIVE BUSINESS DAYS.
 </div>
 
         """,unsafe_allow_html=True)
