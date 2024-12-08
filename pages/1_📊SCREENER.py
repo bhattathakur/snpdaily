@@ -12,6 +12,7 @@ files_list={
 'SNP500-SECTOR':'df_snp500.csv',
 'NASDAQ100':'df_nasdaq100.csv',
 'DOW':'df_dow.csv',
+'IPO':'df_nasdaqipo.csv'
 }
 
 #if 'index_key' not in st.session_state:
@@ -56,6 +57,7 @@ df_main=pd.read_csv(data_file) #read a file
 
 #print head of a file
 #st.write(df_main.head(5))
+#st.stop()
 #check 52 two week high and low
 df_main['fiftytwoweek_low']=(df_main['last_close']==df_main['fiftytwo_week_low'])
 df_main['fiftytwoweek_high']=(df_main['last_close']==df_main['fiftytwo_week_high'])
@@ -90,8 +92,17 @@ if side_bar_selection=='SNP500-SECTOR':
     temp_df=df_main[df_main['sector']==sector_selection].reset_index(drop=True)
     #st.write(sector_df)
 
-if side_bar_selection in ['SNP500','NASDAQ100','DOW']:
+if side_bar_selection in ['SNP500','NASDAQ100','DOW','IPO']:
     temp_df=df_main.copy()
+    #also change the hover_data if IPO
+    if side_bar_selection in ['IPO']:
+        hover_data.insert(5,'ipo_year')
+        #pop the ipo year column
+        popped_col=temp_df.pop('ipo_year').astype(int)
+        temp_df.insert(5,'ipo_year',popped_col)
+
+
+
 
 
 #function to display the dataframe based on the option chosen need to change later for %
@@ -116,7 +127,7 @@ gainer_loser_key_values={\
 }
 
 #st.sidebar.text('contact: bhattathakur2015@gmail.com')
-if side_bar_selection in ['SNP500','SNP500-SECTOR','DOW','NASDAQ100']:
+if side_bar_selection in ['SNP500','SNP500-SECTOR','DOW','NASDAQ100','IPO']:
 #gainer loser selection in side bar
     parameter_selection=st.sidebar.radio('Parameters:',['Gainer','Loser','SMA-N-MISC'],key='parameter_key')
     if parameter_selection in ['Gainer','Loser']:title_template+=parameter_selection+" || "

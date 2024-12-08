@@ -22,7 +22,7 @@ unique_tickers=pd.unique(temp_df['ticker'])
 #print(f"Debug: unique_tickers {unique_tickers}")
 
 
-ticker=st.sidebar.text_input("Enter a ticker from SNP500, NASDAQ100 or DOW30",value='NVDA').upper()
+ticker=st.sidebar.text_input("Enter a ticker from SNP500, NASDAQ100,IPO>=2020 or DOW30",value='NVDA').upper()
 #ticker=ticker.upper()
 
 if ticker not in unique_tickers:

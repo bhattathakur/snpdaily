@@ -33,7 +33,7 @@ st.markdown("""
         <div class='custom-font'>
 1. The screener allows you to view the top gainers and losers for various timeframes: the last trading day, last week, last month, and Year-to-Date (YTD).<br>
 2. Corresponding "DOWNLOADABLE" table with all information is generated at "INFO-TABLE" for the selection at "SCREENER."<br>
-3. You can filter tickers in the screener by indices such as the S&P 500, S&P 500 Sectors, NASDAQ 100, or Dow 30, providing valuable insights for more granular market observation.<br>
+3. You can filter tickers in the screener by indices such as the S&P 500, S&P 500 Sectors, NASDAQ 100, Dow 30 or IPO, providing valuable insights for more granular market observation.<br>
 4. The SMA-N-MISC indicator helps assess the position of the last price relative to key Simple Moving Averages (SMA) — 21, 50, and 200 periods — which can indicate potential mean reversion opportunities. <br>
 5. SMA-N-MISC also includes data on the 52-week highs and lows, enhancing trend analysis. <br>
 6. The ATR% in SMA-N-MISC shows the Average True Range (ATR) relative to the closing price, which can be useful for both options and stock trading strategies.<br>
@@ -42,6 +42,7 @@ st.markdown("""
 9. The CHART feature generates a yearly chart for given ticker and provides ALL-TIME key information about the stock’s performance.
 10. Pie chart is also helpful to visualize the parameter change over the time.
 11. This screener also features a 1 minute CandleStick Chart for last FIVE BUSINESS DAYS.
+12. Now, the screener also includes the information of stocks for IPO Year >=2020.
 </div>
 
         """,unsafe_allow_html=True)

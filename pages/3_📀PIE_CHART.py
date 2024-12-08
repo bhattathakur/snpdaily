@@ -1,10 +1,10 @@
 import streamlit as st
-#import plotly.graph_objects as go
+import plotly.graph_objects as go
 import plotly.express as px
 import numpy as np
 st.set_page_config(layout='wide')
 
-st.markdown("<h3 style='text-align:center;color:magenta'>Data Frame/Table based on the condition on the SCREENER</h3>",unsafe_allow_html=True)
+st.markdown("<h3 style='text-align:center;color:magenta'>PIE CHART  based on the condition on the SCREENER</h3>",unsafe_allow_html=True)
 
 #last date
 last_date=st.session_state.get('last_date')
@@ -35,16 +35,50 @@ if 'dataframe' in st.session_state:
     st.markdown(f"<h4 style='text-align:center;color:SlateBlue'>{info_text}</h4>",unsafe_allow_html=True)
     pie_df=df.copy().head(30)
     all_columns=pie_df.columns.to_list()
+    #st.write(f'all_columns: {all_columns}')
+    #hover_text
+    #st.stop()
+    condition='ipo_year' in all_columns
+    #st.write(f'condition: {condition}')
+    if condition:
+        ipo_year_idx=pie_df.columns.get_loc('ipo_year')
+    #if 'ipo_year' in pie_df.all_columns:
+    pie_df['hover_text']=(
+            'TICKER: '+pie_df.iloc[:,0]+'<br>'
+            +all_columns[1].upper()+' : '+pie_df[all_columns[1]].round(2).astype(str)+'<br>'
+            +(all_columns[ipo_year_idx].upper()+' : '+pie_df[all_columns[ipo_year_idx]].astype(str) if condition else '')
+            )
+    #pie_df['hover_text']=pie_df[all_columns[ipo_year_idx]].astype(str)if condition else ''
+    #st.write(pie_df)
+    #st.stop()
+
     yvalues=pie_df.iloc[:,1]
-    fig=px.pie(pie_df,values=yvalues.abs().round(2),names='ticker',hover_data=[all_columns[1]])
-    fig.update_traces(textposition='inside',textinfo='label')
-    fig.update_traces(hovertemplate='%{label}<extra></extra>')
-    # Customize hover template to include label and second column
-    fig.update_traces(
-    hovertemplate='TICKER: %{label}<br>'+all_columns[1].upper()+': %{customdata[0]}<extra></extra>',
-    customdata=pie_df[all_columns[1]].round(2)# Pass the second column to customdata
+    #hover_text=pie_df['hover_text']
+    second_col=all_columns[1]
+    #names-> label,values->sector 
+    fig=go.Figure(
+            data=[
+                go.Pie(
+                    labels=pie_df['ticker'],values=yvalues.abs(),
+                    textinfo='label',hole=0.5,hoverinfo=None,
+                    hovertemplate='%{customdata}<extra></extra>',
+                    customdata=pie_df['hover_text']
+                    )
+                ]
+            
+            )
+    font_size=20
+    if len(info_text)>40:
+        font_size=12
+    fig.add_annotation(
+        text=f"{info_text}",  # Text to display in the center
+        x=0.5,  # X position (0.5 places it in the center of the chart)
+        y=0.5,  # Y position (0.5 places it in the center of the chart)
+        font=dict(size=font_size, color="brown"),  # Font size and color
+        showarrow=False  # Disable the arrow pointing to the text
     )
-    fig.update_layout(width=800,height=800)
+    size=1000
+    fig.update_layout(width=size,height=size)
     fig.update_layout(
     hoverlabel=dict(
         bgcolor="lightblue",
@@ -55,24 +89,5 @@ if 'dataframe' in st.session_state:
    )
 
     st.plotly_chart(fig,use_container_width=True)
-    
-    #if(debug):st.write(f'z: {z}')
-    #all_cols={'font-size:15px;font-weight:bold;text-align:center;'}
-    #yellow_highlight={'background-color':'yellow'}
-    #green_highlight={'background-color':'#4285F4'}
-    #secondcol_highlight={'background-color':'#ffffcc','font-weight':'35px'}
-    #yellow_columns=[i for i in all_columns if i.startswith('sma')]
-    #color_columns=[i for i in all_columns if 'change' in i]
-    ##st.dataframe(df.style\
-    #        #.applymap(style_cells)\
-    #        .set_properties(subset=yellow_columns,**yellow_highlight)\
-    #        .set_properties(subset=['ticker'],**green_highlight)\
-    #        .set_properties(subset=[all_columns[1]],**yellow_highlight)\
-    #        .map(color_value,subset=color_columns)\
-    #        .format(precision=2),use_container_width=True,height=600)
-    #st.dataframe(df.style.set_properties(subset=['ticker'],**green_highlight).format(precision=2))
-    #st.markdown(df,unsafe_allow_html=True)
-    
-    #st.dataframe(df.style.background_gradient(axis=None).format(precision=2))
 else:
     st.warning("PLEASE USE THE SCREENER FIRST",icon="⚠️")
