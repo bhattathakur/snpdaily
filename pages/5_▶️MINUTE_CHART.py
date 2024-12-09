@@ -79,7 +79,7 @@ except:
     st.stop()
 
 #this is needed if using the online services like google colab
-debug=True
+#debug=True
 if debug:st.write(temp_df)
 temp_df=temp_df[ticker]#.reset_index(drop=False) #on remote deployment
 
