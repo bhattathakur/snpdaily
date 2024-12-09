@@ -61,7 +61,7 @@ except:
 #this is needed if using the online services like google colab
 debug=True
 if debug:st.write(temp_df)
-temp_df=temp_df[ticker].reset_index(drop=False) #on remote deployment
+temp_df=temp_df[ticker]#.reset_index(drop=False) #on remote deployment
 
 temp_df=temp_df.reset_index(drop=False) #on local
 
