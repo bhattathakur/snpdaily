@@ -63,7 +63,7 @@ debug=True
 if debug:st.write(temp_df)
 temp_df=temp_df[ticker]#.reset_index(drop=False) #on remote deployment
 
-temp_df=temp_df.reset_index(drop=False) #reset_index
+temp_df=temp_df.reset_index(drop=True) #reset_index
 
 if debug:st.write(temp_df)
 
