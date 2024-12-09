@@ -161,7 +161,7 @@ if(want_minute_data):
     on_local=False
     if not on_local:df=df[ticker].reset_index(drop=False) #This is turned on the app deployment and turned off in local
     df=df.reset_index(drop=False)
-    #df['Datetime']=pd.to_datetime(df['Datetime']) #Needed for a local
+    df['Datetime']=pd.to_datetime(df['Datetime']) #Needed for a local
     #df.loc[:,ticker]=ticker
     df['Volume']=df['Volume'].div(1e6)
     df['Datetime']=df['Datetime'].dt.tz_convert(est_timezone)#.dt.strftime('%Y-%m-%d %H:%M')
