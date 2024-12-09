@@ -85,7 +85,7 @@ df=temp_df[temp_df['Datetime'].dt.date==date_chosen]
 if debug:st.write(df)
 
 
-if debug:st.stop()
+#if debug:st.stop()
 #user defined functions
 def get_sma(df,parameter,period):
   'smas for close or volume '
@@ -160,14 +160,14 @@ def get_informative_df(df):
 
 want_minute_data=True
 if(want_minute_data):
-    if(debug):st.write(df.tail())
-    if(debug):st.write(f"df columns: {df.columns}")
-    on_local=False
-    if not on_local:df=df[ticker].reset_index(drop=False) #This is turned on the app deployment and turned off in local
-    df=df.reset_index(drop=False)
-    df['Datetime']=pd.to_datetime(df['Datetime']) #Needed for a local
-    #df.loc[:,ticker]=ticker
-    debug=True
+    # if(debug):st.write(df.tail())
+    # if(debug):st.write(f"df columns: {df.columns}")
+    # on_local=False
+    # if not on_local:df=df[ticker].reset_index(drop=False) #This is turned on the app deployment and turned off in local
+    # df=df.reset_index(drop=False)
+    # df['Datetime']=pd.to_datetime(df['Datetime']) #Needed for a local
+    # #df.loc[:,ticker]=ticker
+    # debug=True
     if(debug):st.write(f"info_df columns: {info_df.columns}")
     df['Volume']=df['Volume'].div(1e6)
     df['Datetime']=df['Datetime'].dt.tz_convert(est_timezone)#.dt.strftime('%Y-%m-%d %H:%M')
