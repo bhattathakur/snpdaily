@@ -47,6 +47,26 @@ else:
 st.sidebar.markdown(f'CHOSEN TICKER: {user_value}')
 
 #ticker
+#get informative df
+def get_informative_df(df):
+  temp_df=df.copy()
+  temp_df['sma5']=get_sma(temp_df,'Close',5)
+  temp_df['sma10']=get_sma(temp_df,'Close',10)
+  temp_df['vol5']=get_sma(temp_df,'Volume',5)
+  #temp_df['vol10']=get_sma(temp_df,'Volume',10)
+  temp_df['typical_price']=(temp_df['High']+temp_df['Low']+temp_df['Close'])/3
+  temp_df['vwap']=(temp_df['Volume']*temp_df['typical_price']).cumsum()/temp_df['Volume'].cumsum()
+  temp_df['rsi']=calculate_rsi(temp_df['Close'])
+  temp_df['TR1']=temp_df['High']-temp_df['Low']
+  temp_df['TR2']=(temp_df['High']-temp_df['Close'].shift(1)).abs()
+  temp_df['TR3']=(temp_df['Low']-temp_df['Close'].shift(1)).abs()
+  temp_df['tr']=temp_df[['TR1','TR2','TR3']].max(axis=1)
+  temp_df['atr5']=temp_df['tr'].rolling(window=5).mean()
+
+  #dropping_columns
+  dropping_cols=['TR1','TR2','TR3','typical_price']
+  temp_df=temp_df.drop(dropping_cols,axis=1)
+  return temp_df.round(2)
 ticker=user_value #will be used in a plot
 try:
     temp_df=yf.download(ticker,period='max',interval='1m',group_by='tickers')
@@ -137,26 +157,7 @@ def text_to_audio(text,ticker=ticker):
     st.components.v1.html(js_code, height=0,width=0)
 
 
-#get informative df
-def get_informative_df(df):
-  temp_df=df.copy()
-  temp_df['sma5']=get_sma(temp_df,'Close',5)
-  temp_df['sma10']=get_sma(temp_df,'Close',10)
-  temp_df['vol5']=get_sma(temp_df,'Volume',5)
-  #temp_df['vol10']=get_sma(temp_df,'Volume',10)
-  temp_df['typical_price']=(temp_df['High']+temp_df['Low']+temp_df['Close'])/3
-  temp_df['vwap']=(temp_df['Volume']*temp_df['typical_price']).cumsum()/temp_df['Volume'].cumsum()
-  temp_df['rsi']=calculate_rsi(temp_df['Close'])
-  temp_df['TR1']=temp_df['High']-temp_df['Low']
-  temp_df['TR2']=(temp_df['High']-temp_df['Close'].shift(1)).abs()
-  temp_df['TR3']=(temp_df['Low']-temp_df['Close'].shift(1)).abs()
-  temp_df['tr']=temp_df[['TR1','TR2','TR3']].max(axis=1)
-  temp_df['atr5']=temp_df['tr'].rolling(window=5).mean()
 
-  #dropping_columns
-  dropping_cols=['TR1','TR2','TR3','typical_price']
-  temp_df=temp_df.drop(dropping_cols,axis=1)
-  return temp_df.round(2)
 
 want_minute_data=True
 if(want_minute_data):
