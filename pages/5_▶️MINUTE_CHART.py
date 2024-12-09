@@ -168,7 +168,7 @@ if(want_minute_data):
     # df['Datetime']=pd.to_datetime(df['Datetime']) #Needed for a local
     # #df.loc[:,ticker]=ticker
     # debug=True
-    if(debug):st.write(f"info_df columns: {info_df.columns}")
+    if(debug):st.write(f"df columns: {df.columns}")
     df['Volume']=df['Volume'].div(1e6)
     df['Datetime']=df['Datetime'].dt.tz_convert(est_timezone)#.dt.strftime('%Y-%m-%d %H:%M')
     info_df=get_informative_df(df)
