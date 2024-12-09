@@ -60,9 +60,9 @@ except:
 
 #this is needed if using the online services like google colab
 if debug:st.write(temp_df)
-temp_df=temp_df[ticker].reset_index(drop=False)
+#temp_df=temp_df[ticker].reset_index(drop=False) #on remote deployment
 
-#temp_df=temp_df.reset_index(drop=False)
+temp_df=temp_df.reset_index(drop=False) #on local
 
 if debug:st.write(temp_df)
 
@@ -158,7 +158,7 @@ want_minute_data=True
 if(want_minute_data):
     if(debug):st.write(df.tail())
     if(debug):st.write(f"df columns: {df.columns}")
-    on_local=True
+    on_local=False
     if not on_local:df=df[ticker].reset_index(drop=False) #This is turned on the app deployment and turned off in local
     df=df.reset_index(drop=False)
     df['Datetime']=pd.to_datetime(df['Datetime']) #Needed for a local
@@ -274,11 +274,28 @@ if(want_minute_data):
         #st.write(f'custom_ticks_vals: {custom_ticks_vals}')
         #st.write(f'custom_ticks_text: {custom_ticks_text}')
 
-        fig.update_layout(xaxis_rangeslider_visible=False,
-                xaxis=dict(tickmode='array',tickvals=custom_ticks_vals,ticktext=custom_ticks_text),
-                xaxis_tickformat='%H:%M',
-                width=1200,height=770,
-                )
+#        fig.update_layout(xaxis_rangeslider_visible=False,
+#                xaxis=dict(tickmode='array',tickvals=custom_ticks_vals,ticktext=custom_ticks_text),
+#                xaxis_tickformat='%H:%M',
+#                width=1200,height=770,
+#                )
+#        fig.update_xaxes(
+#                #xaxis=dict(tickmode='array',tickvals=custom_ticks_vals,ticktext=custom_ticks_text),
+#                tickmode='array',tickvals=custom_ticks_vals,ticktext=custom_ticks_text,
+#                xaxis_tickformat='%H:%M',
+#                )
+        fig.update_xaxes(
+        tickmode='array',
+        tickvals=custom_ticks_vals,
+        ticktext=custom_ticks_text,
+        tickformat='%H:%M',
+        rangeslider_visible=False
+        )
+        fig.update_layout(
+        width=1200,
+        height=770
+        )
+
 
         st.plotly_chart(fig,use_container_width=True)
 
