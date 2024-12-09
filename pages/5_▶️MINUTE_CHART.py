@@ -201,7 +201,7 @@ if(want_minute_data):
 
     if(debug):st.write(f"last_row: {last_row}")
     if(debug):st.write(f"close: {close}")
-    if(debug):st.write(f"change: {change}")
+    #if(debug):st.write(f"change: {change}")
     if(debug):st.write(f"pct_change: {pct_change}")
     if(debug):st.write(f"Volume: {volume}")
     if(debug):st.write(f"Volume5: {volume5}")
