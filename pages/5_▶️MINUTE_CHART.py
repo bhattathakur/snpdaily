@@ -60,12 +60,12 @@ except:
 
 #this is needed if using the online services like google colab
 debug=True
-#if debug:st.write(temp_df)
+if debug:st.write(temp_df)
 temp_df=temp_df[ticker]#.reset_index(drop=False) #on remote deployment
 
-temp_df=temp_df.reset_index(drop=False) #on local
+temp_df=temp_df.reset_index(drop=False) #reset_index
 
-#if debug:st.write(temp_df)
+if debug:st.write(temp_df)
 
 #get unique dates from the 1m dataframe
 temp_df['Datetime']=pd.to_datetime(temp_df['Datetime'])
