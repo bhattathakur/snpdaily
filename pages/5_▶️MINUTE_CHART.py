@@ -69,6 +69,9 @@ if debug:st.write(temp_df)
 
 #get unique dates from the 1m dataframe
 temp_df['Datetime']=pd.to_datetime(temp_df['Datetime'])
+temp_df['Datetime']=temp_df['Datetime'].dt.tz_convert(est_timezone)
+
+if debug:st.write(temp_df)
 
 #grouped_df=df.groupby(pd.to_datetime(df['Datetime']).dt.date)
 last_bussiness_days=pd.unique(temp_df['Datetime'].dt.date)
