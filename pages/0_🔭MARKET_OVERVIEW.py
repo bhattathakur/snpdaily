@@ -4,12 +4,14 @@ import plotly.express as px
 import pandas as pd
 
 st.set_page_config(layout="wide")  # Enable wide mode
-last_date=st.session_state.get('last_date')
-st.sidebar.info(f"RESULTS BASED ON {last_date}",icon="ℹ️")
 
 
 #reading information file
 df=pd.read_csv('final_info_df.csv')
+
+#last date saved in dataframe
+last_date=df['last_date'].iloc[0]
+st.sidebar.info(f"RESULTS BASED ON {last_date}",icon="ℹ️")
 
 #st.write(df)
 #get labels and values
@@ -21,6 +23,12 @@ def get_labels_values(df_1,cut):
     #if show_text:st.write(f'labels: {labels}')
     #if show_text:st.write(f'values: {values}')
     return labels,values
+
+def check_if_values(values_list):
+    """
+    check if the list is empty or not 
+    """
+    return sum(values_list)>0
 
 
 #create a function for pie-chart
@@ -35,6 +43,16 @@ def get_pie_charts(category,df=df):
     close_labels,close_values=get_labels_values(temp_df,slice(5,7))
     rsi_labels,rsi_values=get_labels_values(temp_df,slice(7,9))
     high_labels,high_values=get_labels_values(temp_df,slice(9,11))
+    up_labels,up_values=get_labels_values(temp_df,slice(11,13))
+    #check values if exist for which will be used to determined if the pie chart is created for given label or not 
+    check_gainer_values=check_if_values(gainer_values)
+    check_close_smas_values=check_if_values(close_values)
+    check_sma5_values=check_if_values(sma5_values)
+    check_rsi_values=check_if_values(rsi_values)
+    check_52week_values=check_if_values(high_values)
+    check_3daysup_values=check_if_values(up_values)
+
+
 
     #colors
     colors=['lightgreen','salmon']
@@ -45,58 +63,76 @@ def get_pie_charts(category,df=df):
     #container 1
     with st.container():
         #two columns
-        col1,col2=st.columns(2)
-
-        #col1
-        with col1:
-            pie1=go.Figure(data=[go.Pie(labels=gainer_labels,values=gainer_values,hole=0.3)])
-
-            pie1.update_traces(hoverinfo='label+value',textinfo='percent',marker=marker,textfont_size=20)
-            title=f'GAINERS-LOSERS'
-            pie1.update_layout(
-            title={'text': f"{title}",'y': 0.9,'x': 0.4,'xanchor': 'center', 'yanchor': 'top'},height=height,width=width)
-            key=f"{category}_gainer"
-            st.plotly_chart(pie1,key=key)
-        #col2
-        with col2:
-            pie2=go.Figure(data=[go.Pie(labels=close_labels,values=close_values,hole=0.3)])
-            pie2.update_traces(hoverinfo='label+value',textinfo='percent',marker=marker,textfont_size=20)
-            title=f'CLOSE AND SMAS'
-            pie2.update_layout(
-            title={'text': f"{title}",'y': 0.9,'x': 0.3,'xanchor': 'center', 'yanchor': 'top'},height=height,width=width)
-            key=f'{category}_close'
-            st.plotly_chart(pie2,key=key)
-
-
-    #containter 2
-    with st.container():
         col1,col2,col3=st.columns(3)
 
         #col1
-        with col1:
-            pie1=go.Figure(data=[go.Pie(labels=sma5_labels,values=sma5_values,hole=0.3)])
-            pie1.update_traces(hoverinfo='label+value',textinfo='percent',marker=marker,textfont_size=20)
-            title=f'SMA5 & SMA10'
-            pie1.update_layout(
-            title={'text': f"{title}",'y': 0.9,'x': 0.3,'xanchor': 'center', 'yanchor': 'top'},height=height,width=width)
-            key=f'{category}_sma'
-            st.plotly_chart(pie1,key=key)
-        with col2:
-            pie2=go.Figure(data=[go.Pie(labels=rsi_labels,values=rsi_values,hole=0.3)])
-            pie2.update_traces(hoverinfo='label+value',textinfo='percent',marker=marker,textfont_size=20)
-            title=f'RSI>70 & RSI<30'
-            pie2.update_layout(
-            title={'text': f"{title}",'y': 0.9,'x': 0.4,'xanchor': 'center', 'yanchor': 'top'},height=height,width=width)
-            key=f'{category}_rsi'
-            st.plotly_chart(pie2,key=key)
-        with col3:
-            pie3=go.Figure(data=[go.Pie(labels=high_labels,values=high_values,hole=0.3)])
-            pie3.update_traces(hoverinfo='label+value',textinfo='percent',marker=marker,textfont_size=20)
-            title=f'52WEEK HIGHS/LOWS'
-            pie3.update_layout(
-            title={'text': f"{title}",'y': 0.9,'x': 0.3,'xanchor': 'center', 'yanchor': 'top'},height=height,width=width)
-            key=f'{category}_high'
-            st.plotly_chart(pie3,key=key)
+        if check_gainer_values:
+            with col1:
+                pie1=go.Figure(data=[go.Pie(labels=gainer_labels,values=gainer_values,hole=0.3)])
+
+                pie1.update_traces(hoverinfo='label+value',textinfo='percent',marker=marker,textfont_size=20)
+                title=f'GAINERS-LOSERS'
+                pie1.update_layout(
+                title={'text': f"{title}",'y': 0.9,'x': 0.35,'xanchor': 'center', 'yanchor': 'top'},height=height,width=width)
+                #pie1.update_layout(legend=dict(font=dict(size=18)))
+
+
+                key=f"{category}_gainer"
+                st.plotly_chart(pie1,key=key)
+        #col2
+        if check_close_smas_values:
+            with col2:
+                pie2=go.Figure(data=[go.Pie(labels=close_labels,values=close_values,hole=0.3)])
+                pie2.update_traces(hoverinfo='label+value',textinfo='percent',marker=marker,textfont_size=20)
+                title=f'CLOSE AND SMAS'
+                pie2.update_layout(
+                title={'text': f"{title}",'y': 0.9,'x': 0.25,'xanchor': 'center', 'yanchor': 'top'},height=height,width=width)
+                key=f'{category}_close'
+                #pie2.update_layout(legend=dict(font=dict(size=18)))
+                st.plotly_chart(pie2,key=key)
+
+        #col3
+        if check_sma5_values:
+            with col3:
+                pie1=go.Figure(data=[go.Pie(labels=sma5_labels,values=sma5_values,hole=0.3)])
+                pie1.update_traces(hoverinfo='label+value',textinfo='percent',marker=marker,textfont_size=20)
+                title=f'SMA5 & SMA10'
+                pie1.update_layout(
+                title={'text': f"{title}",'y': 0.9,'x': 0.3,'xanchor': 'center', 'yanchor': 'top'},height=height,width=width)
+                key=f'{category}_sma'
+                st.plotly_chart(pie1,key=key)
+    #con    tainter 2
+    with st.container():
+        col1,col2,col3=st.columns(3)
+
+        if check_3daysup_values:
+            with col1:
+                pie1=go.Figure(data=[go.Pie(labels=up_labels,values=up_values,hole=0.3)])
+
+                pie1.update_traces(hoverinfo='label+value',textinfo='percent',marker=marker,textfont_size=20)
+                title=f'3DAYS UP/DOWN'
+                pie1.update_layout(
+                title={'text': f"{title}",'y': 0.9,'x': 0.3,'xanchor': 'center', 'yanchor': 'top'},height=height,width=width)
+                key=f"{category}_updown"
+                st.plotly_chart(pie1,key=key)
+        if check_rsi_values:
+            with col2:
+                pie2=go.Figure(data=[go.Pie(labels=rsi_labels,values=rsi_values,hole=0.3)])
+                pie2.update_traces(hoverinfo='label+value',textinfo='percent',marker=marker,textfont_size=20)
+                title=f'RSI>70 & RSI<30'
+                pie2.update_layout(
+                title={'text': f"{title}",'y': 0.9,'x': 0.3,'xanchor': 'center', 'yanchor': 'top'},height=height,width=width)
+                key=f'{category}_rsi'
+                st.plotly_chart(pie2,key=key)
+        if check_52week_values:
+            with col3:
+                pie3=go.Figure(data=[go.Pie(labels=high_labels,values=high_values,hole=0.3)])
+                pie3.update_traces(hoverinfo='label+value',textinfo='percent',marker=marker,textfont_size=20)
+                title=f'52WEEK HIGHS/LOWS'
+                pie3.update_layout(
+                title={'text': f"{title}",'y': 0.9,'x': 0.3,'xanchor': 'center', 'yanchor': 'top'},height=height,width=width)
+                key=f'{category}_high'
+                st.plotly_chart(pie3,key=key)
 
     
     #creating a list of lables and values for iterating the pie chart
