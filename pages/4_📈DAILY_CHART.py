@@ -35,6 +35,8 @@ else:
     df['SMA_10'] = df['Close'].rolling(10).mean()
     df['SMA_50'] = df['Close'].rolling(50).mean()
     df['SMA_200'] = df['Close'].rolling(200).mean()
+    #smas for legend
+    sma5=df['SMA_5'].iloc[-1]
     # Calculate VWAP
     df['Price * Volume'] = df['Close'] * df['Volume']
     df['Cumulative Price * Volume'] = df['Price * Volume'].cumsum()
@@ -48,7 +50,7 @@ else:
 #get the dataframe related to input ticker
 data=[go.Candlestick(x=df['Date'],open=df['Open'],high=df['High'],low=df['Low'],close=df['Close'],name=f'{ticker}-Candlestick')]
 #data=[go.Ohlc(x=df['Date'],open=df['Open'],high=df['High'],low=df['Low'],close=df['Close'],name=f'{ticker}-Candlestick')]
-sma5_data=go.Scatter(x=df['Date'],y=df['SMA_5'],mode='lines',name='SMA5',line=dict(color='blue',width=2))
+sma5_data=go.Scatter(x=df['Date'],y=df['SMA_5'],mode='lines',name=f'SMA5-{sma5}',line=dict(color='blue',width=2))
 sma10_data=go.Scatter(x=df['Date'],y=df['SMA_10'],mode='lines',name='SMA10',line=dict(color='green',width=2))
 sma50_data=go.Scatter(x=df['Date'],y=df['SMA_50'],mode='lines',name='SMA50',line=dict(color='yellow',width=2))
 sma200_data=go.Scatter(x=df['Date'],y=df['SMA_200'],mode='lines',name='SMA200',line=dict(color='red',width=2))
