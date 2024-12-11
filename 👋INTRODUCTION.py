@@ -31,7 +31,7 @@ st.warning(f'RESULTS ARE BASED ON LAST-TRADING DAY: {last_date}, {last_day_name}
 st.markdown(f"<h2 style='text-align:center;color:magenta;font-weight:bold;font-family:monospace;font-size:35px'>SIMPLE SCREENER, CHART & INFORMATION</h2>",unsafe_allow_html=True)
 st.markdown("""
         <div class='custom-font'>
-1. MARKET OVERVIEW gives broad insight of the market (like gainers, losers, etc) for different indices or sector sectors in tabs.<br>
+1. MARKET OVERVIEW gives broad insight of the market (like gainers, losers, etc) for different indices or sectors in different tabs.<br>
 2. The screener allows you to view the top gainers and losers for various timeframes: the last trading day, last week, last month, and Year-to-Date (YTD).<br>
 3. Corresponding "DOWNLOADABLE" table with all information is generated at "INFO-TABLE" for the selection at "SCREENER."<br>
 4. You can filter tickers in the screener by indices such as the S&P 500, S&P 500 Sectors, NASDAQ 100, Dow 30 or IPO (YEAR>=2020), providing valuable insights for more granular market observation.<br>
