@@ -45,19 +45,21 @@ else:
     df['Cumulative Price * Volume'] = df['Price * Volume'].cumsum()
     df['Cumulative Volume'] = df['Volume'].cumsum()
     df['VWAP'] = df['Cumulative Price * Volume'] / df['Cumulative Volume']
+    vwap=df['VWAP'].iloc[-1]
+    close=df['Close'].iloc[-1]
 
     # Drop intermediate columns if not needed
     df.drop(['Price * Volume', 'Cumulative Price * Volume', 'Cumulative Volume'], axis=1, inplace=True)
     df=df.round(2)
     #st.write(df)
 #get the dataframe related to input ticker
-data=[go.Candlestick(x=df['Date'],open=df['Open'],high=df['High'],low=df['Low'],close=df['Close'],name=f'{ticker}-Candlestick')]
+data=[go.Candlestick(x=df['Date'],open=df['Open'],high=df['High'],low=df['Low'],close=df['Close'],name=f'{ticker}-Candlestick [{close}]')]
 #data=[go.Ohlc(x=df['Date'],open=df['Open'],high=df['High'],low=df['Low'],close=df['Close'],name=f'{ticker}-Candlestick')]
 sma5_data=go.Scatter(x=df['Date'],y=df['SMA_5'],mode='lines',name=f'SMA5 [{sma5:0.2f}]',line=dict(color='blue',width=2))
 sma10_data=go.Scatter(x=df['Date'],y=df['SMA_10'],mode='lines',name=f'SMA10 [{sma10:0.2f}]',line=dict(color='green',width=2))
 sma50_data=go.Scatter(x=df['Date'],y=df['SMA_50'],mode='lines',name=f'SMA50 [{sma50:0.2f}]',line=dict(color='yellow',width=2))
 sma200_data=go.Scatter(x=df['Date'],y=df['SMA_200'],mode='lines',name=f'SMA200 [{sma200:0.2f}]',line=dict(color='red',width=2))
-vwap_data=go.Scatter(x=df['Date'],y=df['VWAP'],mode='lines',name='VWAP',line=dict(color='orange',width=2))
+vwap_data=go.Scatter(x=df['Date'],y=df['VWAP'],mode='lines',name=f'VWAP [{vwap:0.2f}]',line=dict(color='orange',width=2))
 #container 1
 st.markdown(f"<h3 style='text-align:center;color:red'>ONE YEAR CHART & ALl INFOS FOR {ticker} </h3>",unsafe_allow_html=True)
 with st.container():
