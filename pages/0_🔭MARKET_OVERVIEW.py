@@ -172,7 +172,7 @@ with tab1:
 with tab2:
     tabno=2
     cat=orgunique_categories[tabno-1]
-    st.markdown(f"<h4 Style='text-align:center;background-color:Silver;color:blue';>{cat.upper()} OVERVIEW ON {last_date}</h4>",unsafe_allow_html=True)
+    st.markdown(f"<h4 Style='text-align:center;background-color:Silver;color:blue';>{cat.upper()} OVERVIEW ON {last_date}, {last_day}</h4>",unsafe_allow_html=True)
     if debug:st.write(f'category: {cat}')
     #st.stop()
     get_pie_charts(cat)
@@ -180,84 +180,97 @@ with tab2:
 with tab3:
     tabno=3
     cat=orgunique_categories[tabno-1]
-    st.markdown(f"<h4 Style='text-align:center;background-color:Silver;color:blue';>{cat.upper()} OVERVIEW ON {last_date}</h4>",unsafe_allow_html=True)
+    #st.markdown(f"<h4 Style='text-align:center;background-color:Silver;color:blue';>{cat.upper()} OVERVIEW ON {last_date}</h4>",unsafe_allow_html=True)
+    st.markdown(f"<h4 Style='text-align:center;background-color:Silver;color:blue';>{cat.upper()} OVERVIEW ON {last_date}, {last_day}</h4>",unsafe_allow_html=True)
     get_pie_charts(cat)
 
 #tab 4
 with tab4:
     tabno=4
     cat=orgunique_categories[tabno-1]
-    st.markdown(f"<h4 Style='text-align:center;background-color:Silver;color:blue';>{cat.upper()} OVERVIEW ON {last_date}</h4>",unsafe_allow_html=True)
+    #st.markdown(f"<h4 Style='text-align:center;background-color:Silver;color:blue';>{cat.upper()} OVERVIEW ON {last_date}</h4>",unsafe_allow_html=True)
+    st.markdown(f"<h4 Style='text-align:center;background-color:Silver;color:blue';>{cat.upper()} OVERVIEW ON {last_date}, {last_day}</h4>",unsafe_allow_html=True)
     get_pie_charts(cat)
 
 #tab 5
 with tab5:
     tabno=5
     cat=orgunique_categories[tabno-1]
-    st.markdown(f"<h4 Style='text-align:center;background-color:Silver;color:blue';>{cat.upper()} OVERVIEW ON {last_date}</h4>",unsafe_allow_html=True)
+    #st.markdown(f"<h4 Style='text-align:center;background-color:Silver;color:blue';>{cat.upper()} OVERVIEW ON {last_date}</h4>",unsafe_allow_html=True)
+    st.markdown(f"<h4 Style='text-align:center;background-color:Silver;color:blue';>{cat.upper()} OVERVIEW ON {last_date}, {last_day}</h4>",unsafe_allow_html=True)
     get_pie_charts(cat)
 
 #tab 6
 with tab6:
     tabno=6
     cat=orgunique_categories[tabno-1]
-    st.markdown(f"<h4 Style='text-align:center;background-color:Silver;color:blue';>{cat.upper()} OVERVIEW ON {last_date}</h4>",unsafe_allow_html=True)
+    #st.markdown(f"<h4 Style='text-align:center;background-color:Silver;color:blue';>{cat.upper()} OVERVIEW ON {last_date}</h4>",unsafe_allow_html=True)
+    st.markdown(f"<h4 Style='text-align:center;background-color:Silver;color:blue';>{cat.upper()} OVERVIEW ON {last_date}, {last_day}</h4>",unsafe_allow_html=True)
     get_pie_charts(cat)
 
 #tab 7
 with tab7:
     tabno=7
     cat=orgunique_categories[tabno-1]
-    st.markdown(f"<h4 Style='text-align:center;background-color:Silver;color:blue';>{cat.upper()} OVERVIEW ON {last_date}</h4>",unsafe_allow_html=True)
+    #st.markdown(f"<h4 Style='text-align:center;background-color:Silver;color:blue';>{cat.upper()} OVERVIEW ON {last_date}</h4>",unsafe_allow_html=True)
+    st.markdown(f"<h4 Style='text-align:center;background-color:Silver;color:blue';>{cat.upper()} OVERVIEW ON {last_date}, {last_day}</h4>",unsafe_allow_html=True)
     get_pie_charts(cat)
 
 #tab 8
 with tab8:
     tabno=8
     cat=orgunique_categories[tabno-1]
-    st.markdown(f"<h4 Style='text-align:center;background-color:Silver;color:blue';>{cat.upper()} OVERVIEW ON {last_date}</h4>",unsafe_allow_html=True)
+    #st.markdown(f"<h4 Style='text-align:center;background-color:Silver;color:blue';>{cat.upper()} OVERVIEW ON {last_date}</h4>",unsafe_allow_html=True)
+    st.markdown(f"<h4 Style='text-align:center;background-color:Silver;color:blue';>{cat.upper()} OVERVIEW ON {last_date}, {last_day}</h4>",unsafe_allow_html=True)
     get_pie_charts(cat)
 
 #tab 9
 with tab9:
     tabno=9
     cat=orgunique_categories[tabno-1]
-    st.markdown(f"<h4 Style='text-align:center;background-color:Silver;color:blue';>{cat.upper()} OVERVIEW ON {last_date}</h4>",unsafe_allow_html=True)
+    #st.markdown(f"<h4 Style='text-align:center;background-color:Silver;color:blue';>{cat.upper()} OVERVIEW ON {last_date}</h4>",unsafe_allow_html=True)
+    st.markdown(f"<h4 Style='text-align:center;background-color:Silver;color:blue';>{cat.upper()} OVERVIEW ON {last_date}, {last_day}</h4>",unsafe_allow_html=True)
     get_pie_charts(cat)
 
 #tab 10
 with tab10:
     tabno=10
     cat=orgunique_categories[tabno-1]
-    st.markdown(f"<h4 Style='text-align:center;background-color:Silver;color:blue';>{cat.upper()} OVERVIEW ON {last_date}</h4>",unsafe_allow_html=True)
+    #st.markdown(f"<h4 Style='text-align:center;background-color:Silver;color:blue';>{cat.upper()} OVERVIEW ON {last_date}</h4>",unsafe_allow_html=True)
+    st.markdown(f"<h4 Style='text-align:center;background-color:Silver;color:blue';>{cat.upper()} OVERVIEW ON {last_date}, {last_day}</h4>",unsafe_allow_html=True)
     get_pie_charts(cat)
 #tab 11
 with tab11:
     tabno=11
     cat=orgunique_categories[tabno-1]
-    st.markdown(f"<h4 Style='text-align:center;background-color:Silver;color:blue';>{cat.upper()} OVERVIEW ON {last_date}</h4>",unsafe_allow_html=True)
+    #st.markdown(f"<h4 Style='text-align:center;background-color:Silver;color:blue';>{cat.upper()} OVERVIEW ON {last_date}</h4>",unsafe_allow_html=True)
+    st.markdown(f"<h4 Style='text-align:center;background-color:Silver;color:blue';>{cat.upper()} OVERVIEW ON {last_date}, {last_day}</h4>",unsafe_allow_html=True)
     get_pie_charts(cat)
 #tab 12
 with tab12:
     tabno=12
     cat=orgunique_categories[tabno-1]
-    st.markdown(f"<h4 Style='text-align:center;background-color:Silver;color:blue';>{cat.upper()} OVERVIEW ON {last_date}</h4>",unsafe_allow_html=True)
+    #st.markdown(f"<h4 Style='text-align:center;background-color:Silver;color:blue';>{cat.upper()} OVERVIEW ON {last_date}</h4>",unsafe_allow_html=True)
+    st.markdown(f"<h4 Style='text-align:center;background-color:Silver;color:blue';>{cat.upper()} OVERVIEW ON {last_date}, {last_day}</h4>",unsafe_allow_html=True)
     get_pie_charts(cat)
 #tab 13
 with tab13:
     tabno=13
     cat=orgunique_categories[tabno-1]
-    st.markdown(f"<h4 Style='text-align:center;background-color:Silver;color:blue';>{cat.upper()} OVERVIEW ON {last_date}</h4>",unsafe_allow_html=True)
+    #st.markdown(f"<h4 Style='text-align:center;background-color:Silver;color:blue';>{cat.upper()} OVERVIEW ON {last_date}</h4>",unsafe_allow_html=True)
+    st.markdown(f"<h4 Style='text-align:center;background-color:Silver;color:blue';>{cat.upper()} OVERVIEW ON {last_date}, {last_day}</h4>",unsafe_allow_html=True)
     get_pie_charts(cat)
 #tab 14
 with tab14:
     tabno=14
     cat=orgunique_categories[tabno-1]
-    st.markdown(f"<h4 Style='text-align:center;background-color:Silver;color:blue';>{cat.upper()} OVERVIEW ON {last_date}</h4>",unsafe_allow_html=True)
+    #st.markdown(f"<h4 Style='text-align:center;background-color:Silver;color:blue';>{cat.upper()} OVERVIEW ON {last_date}</h4>",unsafe_allow_html=True)
+    st.markdown(f"<h4 Style='text-align:center;background-color:Silver;color:blue';>{cat.upper()} OVERVIEW ON {last_date}, {last_day}</h4>",unsafe_allow_html=True)
     get_pie_charts(cat)
 #tab 15
 with tab15:
     tabno=15
     cat=orgunique_categories[tabno-1]
-    st.markdown(f"<h4 Style='text-align:center;background-color:Silver;color:blue';>{cat.upper()} OVERVIEW ON {last_date}</h4>",unsafe_allow_html=True)
+    #st.markdown(f"<h4 Style='text-align:center;background-color:Silver;color:blue';>{cat.upper()} OVERVIEW ON {last_date}</h4>",unsafe_allow_html=True)
+    st.markdown(f"<h4 Style='text-align:center;background-color:Silver;color:blue';>{cat.upper()} OVERVIEW ON {last_date}, {last_day}</h4>",unsafe_allow_html=True)
     get_pie_charts(cat)
