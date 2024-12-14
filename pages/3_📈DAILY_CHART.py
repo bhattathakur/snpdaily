@@ -20,10 +20,15 @@ temp_df=pd.read_csv(data_file)
 unique_tickers=pd.unique(temp_df['ticker'])
 
 #print(f"Debug: unique_tickers {unique_tickers}")
+#Giving the selection or user input
+ticker_list=['^GSPC','^IXIC','^DJI','^RUT','TSLA','NVDA','AAPL','MSFT','GOOGL','META','AMZN']
 
 
-ticker=st.sidebar.text_input("Enter a ticker from SNP500, NASDAQ100,IPO>=2020 or DOW30",value='NVDA').upper()
+chosen_ticker=st.selectbox('Select a ticker from the list:',ticker_list,index=0)
+custom_ticker=st.sidebar.text_input("Enter a ticker from INDICES,SNP500, NASDAQ100,IPO>=2020 or DOW30",value='')
 #ticker=ticker.upper()
+ticker=custom_ticker.upper() if custom_ticker else chosen_ticker.upper()
+
 
 if ticker not in unique_tickers:
     st.warning(f'{ticker} is not in SNP500, NASDAQ100 or DOW30',icon="⚠️")
