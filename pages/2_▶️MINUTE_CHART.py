@@ -40,7 +40,7 @@ radio_value=st.sidebar.radio("INPUT METHOD",choose_radio_options,key='input_meth
 #user_value=st.sidebar.selectbox("SELECT or INPUT YOUR TICKER",indices+mag7,index=0,key='user_choice')
 
 if radio_value==choose_radio_options[0]:
-    user_value=st.sidebar.selectbox("SELECT",mag7,key='mag7',index=2)
+    user_value=st.sidebar.selectbox("SELECT",indices+mag7,key='mag7',index=0)
 else:
     user_value=st.sidebar.text_input("INPUT YOUR TICKER",key='user_input').upper()
 
