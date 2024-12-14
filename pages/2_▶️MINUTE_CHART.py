@@ -12,7 +12,8 @@ import sys
 #import for fiveday 1 minute chart
 #from ..pyfiles.fivedaychart import *
 # Add the pyfiles directory to sys.path
-sys.path.append(os.path.abspath("../pyfiles"))
+sys.path.append(os.path.abspath("pyfiles"))
+#pyfiles/fivedaychart.py
 from pyfiles.fivedaychart import get_avwap,get_merged_vwap,get_single_vwap
 
 #import pandas_ta as ta
