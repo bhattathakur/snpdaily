@@ -257,6 +257,10 @@ if side_bar_selection in ['SNP500','SNP500-SECTOR','DOW','NASDAQ100','IPO']:
                 last_close_part=par.split('-')[0]
                #print(f"Debug: sma_radio_option: {par}\n sma_part: {sma_part}")
                 temp_df[par]=temp_df['last_close']-temp_df[sma_part]
+                #Break into two parts 3 lines added
+                part1=temp_df.sort_values(by=par,ascending=True).head(20) #twenty lower
+                part2=temp_df.sort_values(by=par,ascending=False).head(20) #twenty upper
+                temp_df=pd.concat(part1,part2,axis=0).reset_index(drop=True)
                 #temp_df['last_close-sma_21']=temp_df['last_close']-temp_df['sma_21']
                 st.markdown(
                     f"<h2 style='text-align:center;color:magenta'>{par.upper()}</h2>",unsafe_allow_html=True
@@ -322,7 +326,7 @@ fig.update_layout(
 yaxis_title=fig.layout.yaxis.title.text
 #fig.update_layout(yaxis_title=fig.layout.yaxis.title.text.upper(),xaxis_title=fig.layout.xaxis.title.text.upper())
 #print(f'yaxis_title:{yaxis_title}')
-fig.update_layout(width=1200,height=700)
+fig.update_layout(width=1200,height=680)
 
 
 st.plotly_chart(fig,use_container_width=True)
