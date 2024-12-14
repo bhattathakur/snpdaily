@@ -2,7 +2,7 @@ import streamlit as st
 import plotly.graph_objects as go
 import plotly.express as px
 import numpy as np
-st.set_page_config(layout='wide')
+#st.set_page_config(layout='wide')
 
 st.markdown("<h3 style='text-align:center;color:magenta'>PIE CHART  based on the condition on the SCREENER</h3>",unsafe_allow_html=True)
 
