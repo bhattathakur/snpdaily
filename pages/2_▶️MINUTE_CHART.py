@@ -14,7 +14,7 @@ import sys
 # Add the pyfiles directory to sys.path
 sys.path.append(os.path.abspath("pyfiles"))
 #pyfiles/fivedaychart.py
-from pyfiles.fivedaychart import get_avwap,get_merged_vwap,get_single_vwap
+#from pyfiles.fivedaychart import get_avwap,get_merged_vwap,get_single_vwap
 
 #import pandas_ta as ta
 #import talib
@@ -106,13 +106,13 @@ if debug:st.write(temp_df)
 last_bussiness_days=pd.unique(temp_df['Datetime'].dt.date)
 if debug:st.write(f"last_bussiness_days: {last_bussiness_days}")
 
-date_chosen=st.sidebar.radio("CHOOSE AVAILABLE DATES",sorted(last_bussiness_days,reverse=True)+['last_5business_days'],index=0)
+date_chosen=st.sidebar.radio("CHOOSE AVAILABLE DATES",sorted(last_bussiness_days,reverse=True),index=0)
 st.sidebar.write(f'CHOSEN DATE: {date_chosen}')
-if date_chosen=='last_5business_days':
-    fig=get_single_vwap(ticker)
-    st.pyplot(fig)
+# if date_chosen=='last_5business_days':
+#     fig=get_single_vwap(ticker)
+#     st.pyplot(fig)
 
-    st.stop()
+#     st.stop()
     
 
 #get df based on chosen date
