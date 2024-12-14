@@ -100,9 +100,16 @@ if debug:st.write(f"last_bussiness_days: {last_bussiness_days}")
 
 date_chosen=st.sidebar.radio("CHOOSE AVAILABLE DATES",sorted(last_bussiness_days,reverse=True)+['last_5business_days'],index=0)
 st.sidebar.write(f'CHOSEN DATE: {date_chosen}')
+if date_chosen=='last_5business_days':
+    file='pyfiles/fivedaychart.py'
+    with open(file,'r',encoding='utf-8') as f:
+        code=f.read()
+        exec(code) #
+        st.stop()
+    
 
 #get df based on chosen date
-df=temp_df.copy() if date_chosen=='last_5business_days' else temp_df[temp_df['Datetime'].dt.date==date_chosen]
+df=temp_df[temp_df['Datetime'].dt.date==date_chosen]
 if debug:st.write(df)
 
 
