@@ -7,6 +7,8 @@ import datetime
 import pytz
 import plotly.graph_objects as go
 from plotly.subplots import make_subplots
+#import for fiveday 1 minute chart
+from ..pyfiles.fivedaychart import *
 
 #import pandas_ta as ta
 #import talib
@@ -101,11 +103,10 @@ if debug:st.write(f"last_bussiness_days: {last_bussiness_days}")
 date_chosen=st.sidebar.radio("CHOOSE AVAILABLE DATES",sorted(last_bussiness_days,reverse=True)+['last_5business_days'],index=0)
 st.sidebar.write(f'CHOSEN DATE: {date_chosen}')
 if date_chosen=='last_5business_days':
-    file='pyfiles/fivedaychart.py'
-    with open(file,'r',encoding='utf-8') as f:
-        code=f.read()
-        exec(code) #
-        st.stop()
+    fig=get_single_vwap(ticker)
+    st.pyplot(fig)
+
+    st.stop()
     
 
 #get df based on chosen date
