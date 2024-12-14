@@ -39,7 +39,7 @@ st.markdown("""
 6. SMA-N-MISC also includes data on the 52-week highs and lows, enhancing trend analysis. <br>
 7. The ATR% in SMA-N-MISC shows the Average True Range (ATR) relative to the closing price, which can be useful for both options and stock trading strategies.<br>
 8. SMA-N-MISC ranks stocks based on their trading volume and Relative Strength Index (RSI), offering a quick snapshot of stock performance.<br>
-8. The indicator tracks stocks that are making higher or lower closes over a 3-day period, highlighting potential short-term trends.<br>
+9. The indicator tracks stocks that are making higher or lower closes over a 3-day period, highlighting potential short-term trends.<br>
 10. The DAILY CHART feature generates a yearly chart for given index or ticker and provides ALL-TIME key information about the stock’s performance. <br>
 11. This screener also features a 1 minute CandleStick Chart for last FIVE BUSINESS DAYS for any valid tickers or indices.<br>
 12. Now, the screener also includes the information of stocks for IPO Year >=2020.
