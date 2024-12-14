@@ -7,8 +7,12 @@ import datetime
 import pytz
 import plotly.graph_objects as go
 from plotly.subplots import make_subplots
+import os
+import sys
 #import for fiveday 1 minute chart
-from ..pyfiles.fivedaychart import *
+#from ..pyfiles.fivedaychart import *
+# Add the pyfiles directory to sys.path
+sys.path.append(os.path.abspath("../pyfiles"))
 
 #import pandas_ta as ta
 #import talib
