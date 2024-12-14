@@ -15,10 +15,11 @@ with tab1:
 
 with tab2:
     st.header(f"{tab_list[1]}")
-    file='pages/1_📊SCREENER.py'
+    file='pages/3_📀PIE_CHART.py'
+    
     with open(file) as f:
         code = f.read()
-        exec(code)  # Executes the code inside example1.py
+        exec(code)  # Executes
 
 with tab3:
     st.header(f"{tab_list[2]}")
