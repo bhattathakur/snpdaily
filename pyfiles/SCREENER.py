@@ -197,7 +197,7 @@ if side_bar_selection in ['SNP500','SNP500-SECTOR','DOW','NASDAQ100','IPO']:
             r'highest_volume',\
             r'highest_atr%',\
             r'highest_rsi',\
-            r'last_close-sma_21', r'last_close-sma_50',r'last_close-sma_200',\
+            r'last_close-sma_5', r'last_close-sma_10',r'last_close-sma_21', r'last_close-sma_50',r'last_close-sma_200',\
         ]
         radio_option_list=apply_conditions+other_conditions
         sma_radio_option=st.sidebar.radio( 'Features:', radio_option_list,key='misc_key')
@@ -251,7 +251,7 @@ if side_bar_selection in ['SNP500','SNP500-SECTOR','DOW','NASDAQ100','IPO']:
                 con_df=temp_df.copy()
                 con_df=get_changed_df(con_df,par)
 
-            elif sma_radio_option in [r'last_close-sma_21',r'last_close-sma_50',r'last_close-sma_200']:
+            elif sma_radio_option in [r'last_close-sma_5',r'last_close-sma_10',r'last_close-sma_21',r'last_close-sma_50',r'last_close-sma_200']:
                 how_many=20
                 par=sma_radio_option
                 sma_part=par.split('-')[1]
