@@ -24,7 +24,7 @@ unique_tickers=pd.unique(temp_df['ticker'])
 ticker_list=['^GSPC','^IXIC','^DJI','^RUT','TSLA','NVDA','AAPL','MSFT','GOOGL','META','AMZN']
 
 
-chosen_ticker=st.selectbox('Select a ticker from the list:',ticker_list,index=0)
+chosen_ticker=st.sidebar.selectbox('Select a ticker from the list:',ticker_list,index=0)
 custom_ticker=st.sidebar.text_input("Enter a ticker from INDICES,SNP500, NASDAQ100,IPO>=2020 or DOW30",value='')
 #ticker=ticker.upper()
 ticker=custom_ticker.upper() if custom_ticker else chosen_ticker.upper()
