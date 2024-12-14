@@ -2,7 +2,7 @@
 
 import pandas as pd
 #import numpy as np
-from datetime import datetime,timedelta
+#from datetime import datetime,timedelta
 from functools import reduce
 import yfinance as yf
 import matplotlib.pyplot as plt
