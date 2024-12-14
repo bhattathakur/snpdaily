@@ -98,7 +98,7 @@ if debug:st.write(temp_df)
 last_bussiness_days=pd.unique(temp_df['Datetime'].dt.date)
 if debug:st.write(f"last_bussiness_days: {last_bussiness_days}")
 
-date_chosen=st.sidebar.radio("CHOOSE AVAILABLE DATES",sorted(last_bussiness_days,reverse=True),index=0)
+date_chosen=st.sidebar.radio("CHOOSE AVAILABLE DATES",sorted(last_bussiness_days,reverse=True)+['last_5business_days'],index=0)
 st.sidebar.write(f'CHOSEN DATE: {date_chosen}')
 
 #get df based on chosen date
