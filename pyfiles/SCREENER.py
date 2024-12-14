@@ -161,6 +161,8 @@ if side_bar_selection in ['SNP500','SNP500-SECTOR','DOW','NASDAQ100','IPO']:
 
         top_show=30
         plot_con_df=con_df.copy().head(top_show) #Top 20 
+        #if number of rows available is less than top_show
+        top_show=len(plot_con_df)
 
         #modify colors to bars
         colors=['lightgreen' if value>=0 else 'salmon' for value in plot_con_df[condition]]
