@@ -63,12 +63,13 @@ df_main['fiftytwoweek_low']=(df_main['last_close']==df_main['fiftytwo_week_low']
 df_main['fiftytwoweek_high']=(df_main['last_close']==df_main['fiftytwo_week_high'])
 
 last_date=df_main['last_date'].values[0]
+last_day=pd.to_datetime(last_date).strftime('%A') #last day
 #store last_date in st.session for use
 st.session_state['last_date']=last_date
 #print(f'Debug: Last Date: {last_date}')
 #st.header(f'SNP500 OVERVIEW [{last_date}]')
 st.markdown(
-f"<h4 style='text-align:center'> {side_bar_selection} OVERVIEW [{last_date}]</h4>",
+f"<h4 style='text-align:center'> {side_bar_selection} OVERVIEW [{last_date}, {last_day}]</h4>",
 unsafe_allow_html=True
 )
 
