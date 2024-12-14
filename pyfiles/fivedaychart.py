@@ -79,7 +79,7 @@ def get_single_vwap(ticker):
     This function is intended to get single vwap plot for last 5 trading days
     '''
     #download the data 
-    data = yf.download(ticker, period='5d', interval="1m")
+    data = yf.download(ticker, period='5d', interval="1m",group_by='ticker')
 
     debug=False
     if debug:print(f'head:\n {data.head().to_string()}')
@@ -87,7 +87,7 @@ def get_single_vwap(ticker):
 
     if debug:print(f"Getting plot for: {ticker.upper()}")
     #temp_df=grouped.get_group(ticker).copy()
-    temp_df=data.copy()
+    temp_df=data[ticker].copy()
     temp_df['Ticker']=ticker
     merged_df=get_merged_vwap(temp_df)
     #display(temp_df.head())
