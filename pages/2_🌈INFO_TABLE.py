@@ -1,6 +1,6 @@
 import streamlit as st
 import numpy as np
-st.set_page_config(layout='wide')
+#st.set_page_config(layout='wide')
 
 st.markdown("<h3 style='text-align:center;color:magenta'>Data Frame/Table based on the condition on the SCREENER</h3>",unsafe_allow_html=True)
 
