@@ -55,7 +55,7 @@ else:
 #get the dataframe related to input ticker
 data=[go.Candlestick(x=df['Date'],open=df['Open'],high=df['High'],low=df['Low'],close=df['Close'],name=f'{ticker}-CLOSE {close:>12}')]
 #data=[go.Ohlc(x=df['Date'],open=df['Open'],high=df['High'],low=df['Low'],close=df['Close'],name=f'{ticker}-Candlestick')]
-sma5_data=go.Scatter(x=df['Date'],y=df['SMA_5'],mode='lines',name=f'SMA5 [{sma5:>20.2f}]',line=dict(color='blue',width=2))
+sma5_data=go.Scatter(x=df['Date'],y=df['SMA_5'],mode='lines',name=f'SMA5 {sma5:>24.2f}',line=dict(color='blue',width=2))
 sma10_data=go.Scatter(x=df['Date'],y=df['SMA_10'],mode='lines',name=f'SMA10 [{sma10:0.2f}]',line=dict(color='green',width=2))
 sma50_data=go.Scatter(x=df['Date'],y=df['SMA_50'],mode='lines',name=f'SMA50 [{sma50:0.2f}]',line=dict(color='yellow',width=2))
 sma200_data=go.Scatter(x=df['Date'],y=df['SMA_200'],mode='lines',name=f'SMA200 [{sma200:0.2f}]',line=dict(color='red',width=2))
