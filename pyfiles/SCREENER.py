@@ -171,7 +171,7 @@ if side_bar_selection in ['SNP500','SNP500-SECTOR','DOW','NASDAQ100','IPO']:
         header_color='green' if 'GAINER' in header_text else 'red'
         #st.subheader(f'{parameter_selection.upper()}-{gainer_radio_option.upper()}')
         st.markdown(
-    f"<h2 style='text-align: center;color:{header_color};'>{header_text}</h2>",
+    f"<h3 style='text-align: center;color:{header_color};'>{header_text}</h3>",
     unsafe_allow_html=True
 )
 
