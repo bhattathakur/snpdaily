@@ -322,7 +322,7 @@ fig.update_layout(
 yaxis_title=fig.layout.yaxis.title.text
 #fig.update_layout(yaxis_title=fig.layout.yaxis.title.text.upper(),xaxis_title=fig.layout.xaxis.title.text.upper())
 #print(f'yaxis_title:{yaxis_title}')
-fig.update_layout(width=1200,height=750)
+fig.update_layout(width=1200,height=700)
 
 
 st.plotly_chart(fig,use_container_width=True)
