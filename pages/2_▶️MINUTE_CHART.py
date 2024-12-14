@@ -108,7 +108,7 @@ if debug:st.write(f"last_bussiness_days: {last_bussiness_days}")
 date_chosen=st.sidebar.radio("CHOOSE AVAILABLE DATES",sorted(last_bussiness_days,reverse=True)+['last_5business_days'],index=0)
 st.sidebar.write(f'CHOSEN DATE: {date_chosen}')
 if date_chosen=='last_5business_days':
-    fig=get_single_vwap(ticker)
+    fig=pyfiles.fivedaychart.get_single_vwap(ticker)
     st.pyplot(fig)
 
     st.stop()
