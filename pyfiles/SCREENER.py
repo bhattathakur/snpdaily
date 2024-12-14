@@ -159,7 +159,8 @@ if side_bar_selection in ['SNP500','SNP500-SECTOR','DOW','NASDAQ100','IPO']:
             con_df=temp_df[temp_df[condition]<0].sort_values(by=condition,ascending=True)
         con_df=get_changed_df(con_df,condition) #NOTE: This is a change 
 
-        plot_con_df=con_df.copy()
+        top_show=20
+        plot_con_df=con_df.copy().head(top_show) #Top 20 
 
         #modify colors to bars
         colors=['lightgreen' if value>=0 else 'salmon' for value in plot_con_df[condition]]
@@ -167,7 +168,7 @@ if side_bar_selection in ['SNP500','SNP500-SECTOR','DOW','NASDAQ100','IPO']:
         #print(f"Debug: colors: {colors}")
 
         #title for gainer loser
-        header_text=f'{side_bar_selection}-{parameter_selection.upper()}-{gainer_radio_option.upper()}'
+        header_text=f'{side_bar_selection}-{parameter_selection.upper()}-{gainer_radio_option.upper() [{top_show}]'
         header_color='green' if 'GAINER' in header_text else 'red'
         #st.subheader(f'{parameter_selection.upper()}-{gainer_radio_option.upper()}')
         st.markdown(
