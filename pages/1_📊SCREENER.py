@@ -3,7 +3,7 @@ import plotly.graph_objects as go
 import plotly.express as px
 import pandas as pd
 
-st.set_page_config(layout="wide")  # Enable wide mode
+#st.set_page_config(layout="wide")  # Enable wide mode
 
 
 #data files sources
