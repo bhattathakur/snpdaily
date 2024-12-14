@@ -102,7 +102,7 @@ date_chosen=st.sidebar.radio("CHOOSE AVAILABLE DATES",sorted(last_bussiness_days
 st.sidebar.write(f'CHOSEN DATE: {date_chosen}')
 
 #get df based on chosen date
-df=temp_df.copy() if date_chosen==date_chosen[-1] else temp_df[temp_df['Datetime'].dt.date==date_chosen]
+df=temp_df.copy() if date_chosen=='last_5business_days' else temp_df[temp_df['Datetime'].dt.date==date_chosen]
 if debug:st.write(df)
 
 
