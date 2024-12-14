@@ -1,0 +1,9 @@
+#loading different files as tabs 
+tab_list=['SCREENER','PIE_CHART','INFO_TABLE']
+tab1,tab2,tab3=st.tabs(tab_list)
+# Load example1.py content in Tab 1
+with tab1:
+    st.header(f"{tab_list[0]}")
+    with open("1_📊SCREENER.py") as f:
+        code = f.read()
+        exec(code)  # Executes the code inside example1.py
