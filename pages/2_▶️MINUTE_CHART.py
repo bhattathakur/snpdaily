@@ -13,6 +13,7 @@ import sys
 #from ..pyfiles.fivedaychart import *
 # Add the pyfiles directory to sys.path
 sys.path.append(os.path.abspath("../pyfiles"))
+from pyfiles.fivedaychart import *
 
 #import pandas_ta as ta
 #import talib
