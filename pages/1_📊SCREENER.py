@@ -3,7 +3,7 @@ import streamlit as st
 # This must be the first Streamlit command
 st.set_page_config(page_title="SCREENER", layout="wide")
 
-tab_list=['📊BAR_CHART','📀PIE_CHART','📝INFO_TABLE']
+tab_list=['📝INFO_TABLE','📀PIE_CHART','📊BAR_CHART']
 tab1,tab2,tab3=st.tabs(tab_list)
 # Load example1.py content in Tab 1
 with tab3:
