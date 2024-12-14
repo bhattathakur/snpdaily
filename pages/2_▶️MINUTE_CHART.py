@@ -27,6 +27,7 @@ current_date=current_date_time.date()
 #st.write(f'last_bussiness_days:{last_bussiness_days}')
 
 mag7=['AAPL','NVDA','TSLA','META','AMZN','GOOGL','MSFT','MSTR','AMD','GME','DJT','SMCI']
+indices=['^GSPC','^IXIC','^DOW','^RUT']
 current_time_text=f"{current_date_time.strftime('%A, %I:%M %p, %Y-%m-%d')}"
 
 #check_date_time=True
@@ -36,7 +37,7 @@ plot_placeholder=st.empty() #VERY important for refreshing the same plot otherwi
 choose_radio_options=['CHOOSE FROM LIST','INPUT YOUR TICKER']# if check_date_time else ['CHOOSE FROM LIST']
 radio_value=st.sidebar.radio("INPUT METHOD",choose_radio_options,key='input_method')
 
-#user_value=st.sidebar.selectbox("SELECT or INPUT YOUR TICKER",mag7,index=1,key='user_choice')
+#user_value=st.sidebar.selectbox("SELECT or INPUT YOUR TICKER",indices+mag7,index=0,key='user_choice')
 
 if radio_value==choose_radio_options[0]:
     user_value=st.sidebar.selectbox("SELECT",mag7,key='mag7',index=2)
