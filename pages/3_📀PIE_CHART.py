@@ -4,7 +4,7 @@ import plotly.express as px
 import numpy as np
 #st.set_page_config(layout='wide')
 
-st.markdown("<h6 style='text-align:center;color:magenta'>PIE CHART  based on the condition on the SCREENER</h6>",unsafe_allow_html=True)
+st.markdown("<h4 style='text-align:center;color:magenta'>PIE CHART  based on the condition on the SCREENER</h4>",unsafe_allow_html=True)
 
 #last date
 last_date=st.session_state.get('last_date')
