@@ -11,6 +11,7 @@ df=pd.read_csv('final_info_df.csv')
 
 #last date saved in dataframe
 last_date=df['last_date'].iloc[0]
+last_day=pd.to_datetime(last_date).strftime('%A')
 st.sidebar.info(f"RESULTS BASED ON {last_date}",icon="ℹ️")
 
 #st.write(df)
@@ -164,7 +165,7 @@ tab1,tab2,tab3,tab4,tab5,tab6,tab7,tab8,tab9,tab10,tab11,tab12,tab13,tab14,tab15
 with tab1:
     tabno=1
     cat=orgunique_categories[tabno-1]
-    st.markdown(f"<h4 Style='text-align:center;background-color:Silver;color:blue';>{cat.upper()} OVERVIEW ON {last_date}</h4>",unsafe_allow_html=True)
+    st.markdown(f"<h4 Style='text-align:center;background-color:Silver;color:blue';>{cat.upper()} OVERVIEW ON {last_date}, {last_day}</h4>",unsafe_allow_html=True)
     get_pie_charts(cat)
 
 #tab2
