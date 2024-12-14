@@ -6,7 +6,7 @@ st.set_page_config(page_title="SCREENER", layout="wide")
 tab_list=['📝INFO_TABLE','📀PIE_CHART','📊BAR_CHART']
 tab1,tab2,tab3=st.tabs(tab_list)
 # Load example1.py content in Tab 1
-with tab3:
+with tab1:
     #st.header(f"{tab_list[0]}")
     file='pyfiles/SCREENER.py'
    
@@ -23,7 +23,7 @@ with tab2:
         code = f.read()
         exec(code)  # Executes
 
-with tab1:
+with tab3:
     #st.header(f"{tab_list[2]}")
     file='pyfiles/2_🌈INFO_TABLE.py'
     with open(file,'r',encoding='utf-8') as f:
