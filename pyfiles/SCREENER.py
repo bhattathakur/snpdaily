@@ -260,7 +260,7 @@ if side_bar_selection in ['SNP500','SNP500-SECTOR','DOW','NASDAQ100','IPO']:
                 #Break into two parts 3 lines added
                 part1=temp_df.sort_values(by=par,ascending=True).head(20) #twenty lower
                 part2=temp_df.sort_values(by=par,ascending=False).head(20) #twenty upper
-                temp_df=pd.concat(part1,part2,axis=0).reset_index(drop=True)
+                temp_df=pd.concat([part1,part2],axis=0).reset_index(drop=True)
                 #temp_df['last_close-sma_21']=temp_df['last_close']-temp_df['sma_21']
                 st.markdown(
                     f"<h2 style='text-align:center;color:magenta'>{par.upper()}</h2>",unsafe_allow_html=True
