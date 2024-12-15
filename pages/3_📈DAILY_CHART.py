@@ -66,7 +66,7 @@ sma50_data=go.Scatter(x=df['Date'],y=df['SMA_50'],mode='lines',name=f'SMA50 {sma
 sma200_data=go.Scatter(x=df['Date'],y=df['SMA_200'],mode='lines',name=f'SMA200 {sma200:>22.2f}',line=dict(color='red',width=2))
 vwap_data=go.Scatter(x=df['Date'],y=df['VWAP'],mode='lines',name=f'YTD-VWAP {vwap:>17.2f}',line=dict(color='orange',width=2))
 #container 1
-st.markdown(f"<h3 style='text-align:center;color:red'>ONE YEAR CHART & ALl INFOS FOR {ticker} </h3>",unsafe_allow_html=True)
+st.markdown(f"<h3 style='text-align:center;color:red'>ONE YEAR CHART & ALL TIME INFOS FOR {ticker} </h3>",unsafe_allow_html=True)
 with st.container():
     fig=go.Figure(data=data)
     fig.add_trace(sma5_data)
