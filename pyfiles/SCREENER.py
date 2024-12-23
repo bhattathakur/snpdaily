@@ -217,7 +217,7 @@ if side_bar_selection in ['SNP500','SNP500-SECTOR','DOW','NASDAQ100','IPO']:
             #print(f'Debug: inside apply_condition')
             #if gapped_up or down use the gap
             if(sma_radio_option=='gapped_up'):
-                con_df=temp_df.qurey('gap>0').sort_values(by='gap',ascending=False)
+                con_df=temp_df.query('gap>0').sort_values(by='gap',ascending=False)
                 #inserting gap in second position
                 con_df.insert(1,'gap',con_df.pop('gap'))
             else:con_df=temp_df.query(sma_radio_option).sort_values(by='last_close').reset_index(drop=True)
