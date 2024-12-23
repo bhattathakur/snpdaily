@@ -227,7 +227,9 @@ if side_bar_selection in ['SNP500','SNP500-SECTOR','DOW','NASDAQ100','IPO']:
                 #inserting gap in second position
                 con_df.insert(1,'opening_gap',con_df.pop('gap'))
                 y='opening_gap'
-            else:con_df=temp_df.query(sma_radio_option).sort_values(by='last_close').reset_index(drop=True)
+            else:
+                con_df=temp_df.query(sma_radio_option).sort_values(by='last_close').reset_index(drop=True)
+                y='last_close'
             #st.subheader(f'{sma_radio_option.upper()}')
 
             #NOTE: using the index position to give the color of the bar plots
@@ -241,7 +243,7 @@ if side_bar_selection in ['SNP500','SNP500-SECTOR','DOW','NASDAQ100','IPO']:
                         )
             plot_con_df=con_df.copy()
             fig=px.bar(
-             plot_con_df,x='ticker',y='last_close',hover_data=hover_data,width=1600,height=800
+             plot_con_df,x='ticker',y=y,hover_data=hover_data,width=1600,height=800
             )
             fig.update_traces(marker_color=marker_color)
 
