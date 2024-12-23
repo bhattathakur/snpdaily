@@ -222,6 +222,7 @@ if side_bar_selection in ['SNP500','SNP500-SECTOR','DOW','NASDAQ100','IPO']:
                 lenght_of_df=len(con_df)
                 head=30 if lenght_of_df>20 else lenght_of_df
                 con_df=con_df.head(head)
+                txt=f' [TOP: {head}]'
 
                 #inserting gap in second position
                 con_df.insert(1,'opening_gap',con_df.pop('gap'))
@@ -233,11 +234,13 @@ if side_bar_selection in ['SNP500','SNP500-SECTOR','DOW','NASDAQ100','IPO']:
                 lenght_of_df=len(con_df)
                 head=30 if lenght_of_df>20 else lenght_of_df
                 con_df=con_df.head(head)
+                txt=f' [TOP: {head}]'
                 #inserting gap in second position
                 con_df.insert(1,'opening_gap',con_df.pop('gap'))
                 y='opening_gap'
             else:
                 con_df=temp_df.query(sma_radio_option).sort_values(by='last_close').reset_index(drop=True)
+                txt=f' [ALL]'
                 y='last_close'
             #st.subheader(f'{sma_radio_option.upper()}')
 
@@ -246,8 +249,9 @@ if side_bar_selection in ['SNP500','SNP500-SECTOR','DOW','NASDAQ100','IPO']:
             #print(f'Debug: index_of_radio_option: {index_of_radio_option}')
             h2_color='SlateBlue' #'red' if 'down' or 'low' in sma_radio_option else 'lightgreen'
             marker_color='red' if index_of_radio_option%2==1  else 'lightgreen'
+            
             st.markdown(
-                f"<h2 style='text-align:center;color:{h2_color};background-color:rgb(255, 230, 179,0.25);padding:3px'>{sma_radio_option.upper()}</h2>",
+                f"<h2 style='text-align:center;color:{h2_color};background-color:rgb(255, 230, 179,0.25);padding:3px'>{sma_radio_option.upper()}{txt}</h2>",
                 unsafe_allow_html=True
                         )
             plot_con_df=con_df.copy()
