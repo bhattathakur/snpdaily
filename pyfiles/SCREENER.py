@@ -220,6 +220,10 @@ if side_bar_selection in ['SNP500','SNP500-SECTOR','DOW','NASDAQ100','IPO']:
                 con_df=temp_df.query('gap>0').sort_values(by='gap',ascending=False)
                 #inserting gap in second position
                 con_df.insert(1,'opening_gap',con_df.pop('gap'))
+            elif(sma_radio_option=='gapped_down'):
+                con_df=temp_df.query('gap<0').sort_values(by='gap',ascending=True)
+                #inserting gap in second position
+                con_df.insert(1,'opening_gap',con_df.pop('gap'))
             else:con_df=temp_df.query(sma_radio_option).sort_values(by='last_close').reset_index(drop=True)
             #st.subheader(f'{sma_radio_option.upper()}')
 
