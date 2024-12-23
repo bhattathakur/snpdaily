@@ -229,6 +229,10 @@ if side_bar_selection in ['SNP500','SNP500-SECTOR','DOW','NASDAQ100','IPO']:
                 y='opening_gap' #for bar diagram
             elif(sma_radio_option=='gapped_down'):
                 con_df=temp_df.query('gap<0').sort_values(by='gap',ascending=True)
+                #length of the dataframe or head 20 what ever is bigger
+                lenght_of_df=len(con_df)
+                head=20 if lenght_of_df>20 else lenght_of_df
+                con_df=con_df.head(head)
                 #inserting gap in second position
                 con_df.insert(1,'opening_gap',con_df.pop('gap'))
                 y='opening_gap'
