@@ -194,7 +194,9 @@ if side_bar_selection in ['SNP500','SNP500-SECTOR','DOW','NASDAQ100','IPO']:
             r'sma_5 < sma_10',\
             r'fiftytwoweek_high',r'fiftytwoweek_low',\
             f'up_3_days',\
-            f'down_3_days'
+            f'down_3_days',\
+            f'gapped_up',\
+            f'gapped_down'
         ]
         other_conditions=[
             #r'fiftytwo_week_high',r'fiftytwo_week_low',\
@@ -213,7 +215,12 @@ if side_bar_selection in ['SNP500','SNP500-SECTOR','DOW','NASDAQ100','IPO']:
         #checking if the option is inside the sma_radio_option
         if sma_radio_option in apply_conditions:
             #print(f'Debug: inside apply_condition')
-            con_df=temp_df.query(sma_radio_option).sort_values(by='last_close').reset_index(drop=True)
+            #if gapped_up or down use the gap
+            if(sma_radio_option=='gapped_up'):
+                con_df=temp_df.sort_values(by='gap',ascending=False)
+                #inserting gap in second position
+                con_df.insert(1,'gap',con_df.pop('gap'))
+            else:con_df=temp_df.query(sma_radio_option).sort_values(by='last_close').reset_index(drop=True)
             #st.subheader(f'{sma_radio_option.upper()}')
 
             #NOTE: using the index position to give the color of the bar plots
