@@ -85,7 +85,7 @@ if 'dataframe' in st.session_state:
         font=dict(size=font_size, color="brown"),  # Font size and color
         showarrow=False  # Disable the arrow pointing to the text
     )
-    size=780
+    size=770
     fig.update_layout(width=size,height=size)
     fig.update_layout(
     hoverlabel=dict(
