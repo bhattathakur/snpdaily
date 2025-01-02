@@ -67,7 +67,7 @@ if 'dataframe' in st.session_state:
                 go.Pie(
                     labels=custom_labels,#pie_df['ticker'],
                     values=yvalues.abs(),
-                    textinfo='label+value',hole=0.5,hoverinfo=None,
+                    textinfo='label',hole=0.5,hoverinfo=None,
                     hovertemplate='%{customdata}<extra></extra>',
                     customdata=pie_df['hover_text']
                     )
