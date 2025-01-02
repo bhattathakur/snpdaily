@@ -272,14 +272,14 @@ if side_bar_selection in ['SNP500','SNP500-SECTOR','DOW','NASDAQ100','IPO']:
 
             elif sma_radio_option in [r'highest_atr%']:
                 par='atr%'
-                st.markdown(f"<h3 style='text-align:center;color:OliveDrab'>HIGHEST {par.upper()} [ATR w.r.t. CLOSE]</h3>",unsafe_allow_html=True)
+                st.markdown(f"<h3 style='text-align:center;color:OliveDrab'>HIGHEST {par.upper()} [ATR w.r.t. CLOSE, TOP {top}]</h3>",unsafe_allow_html=True)
                 temp_df=temp_df.sort_values(by=par,ascending=False)
                 fig=px.bar(temp_df,x='ticker',y=par,hover_data=hover_data,width=1600,height=800,text_auto=True)
                 con_df=temp_df.copy()
                 con_df=get_changed_df(con_df,par)
             elif sma_radio_option in [r'highest_rsi']:
                 par='rsi'
-                st.markdown(f"<h3 style='text-align:center;color:OliveDrab'>HIGHEST {par.upper()} ",unsafe_allow_html=True)
+                st.markdown(f"<h3 style='text-align:center;color:OliveDrab'>HIGHEST {par.upper() [TOP {top}]} ",unsafe_allow_html=True)
                 temp_df=temp_df.sort_values(by=par,ascending=False)
                 fig=px.bar(temp_df,x='ticker',y=par,hover_data=hover_data,width=1600,height=800,text_auto=True)
                 con_df=temp_df.copy()
