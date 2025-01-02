@@ -179,7 +179,7 @@ if side_bar_selection in ['SNP500','SNP500-SECTOR','DOW','NASDAQ100','IPO']:
 )
 
         fig=px.bar(
-            plot_con_df,x='ticker',y=condition,hover_data=hover_data,width=1600,height=800
+            plot_con_df,x='ticker',y=condition,hover_data=hover_data,width=1600,height=800,text_auto=True
         )
         fig.update_traces(marker_color=colors)
 
