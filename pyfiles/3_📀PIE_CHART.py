@@ -69,7 +69,8 @@ if 'dataframe' in st.session_state:
                     values=yvalues.abs(),
                     textinfo='label',hole=0.5,hoverinfo=None,
                     hovertemplate='%{customdata}<extra></extra>',
-                    customdata=pie_df['hover_text']
+                    customdata=pie_df['hover_text'],
+                    showlegend=False, #disable the legend
                     )
                 ]
             
