@@ -261,9 +261,10 @@ if side_bar_selection in ['SNP500','SNP500-SECTOR','DOW','NASDAQ100','IPO']:
             fig.update_traces(marker_color=marker_color)
 
         else:# sma_radio_option in [r'last_close-sma_21', r'last_close-sma_50',r'last_close-sma_200',r'up_three_days']:
+            top=20
             if sma_radio_option in [r'highest_volume']:
                 par='last_volume(M)'
-                st.markdown(f"<h3 style='text-align:center;color:OliveDrab'>HIGHEST {par.upper()}</h3>",unsafe_allow_html=True)
+                st.markdown(f"<h3 style='text-align:center;color:OliveDrab'>HIGHEST {par.upper()} [TOP {top}]</h3>",unsafe_allow_html=True)
                 temp_df=temp_df.sort_values(by=par,ascending=False).head(20)
                 fig=px.bar(temp_df,x='ticker',y=par,hover_data=hover_data,width=1600,height=800,text_auto=True)
                 con_df=temp_df.copy()
