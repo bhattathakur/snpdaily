@@ -56,10 +56,17 @@ if 'dataframe' in st.session_state:
     #hover_text=pie_df['hover_text']
     second_col=all_columns[1]
     #names-> label,values->sector 
+
+    #tickers
+    tickers=pie_df['ticker']
+
+    #custom_labels
+    custom_labels=[f'{tick}<br>{val}' for tick,val in zip(tickers,yvalues)]
     fig=go.Figure(
             data=[
                 go.Pie(
-                    labels=pie_df['ticker'],values=yvalues.abs(),
+                    labels=custom_labels,#pie_df['ticker'],
+                    values=yvalues.abs(),
                     textinfo='label+value',hole=0.5,hoverinfo=None,
                     hovertemplate='%{customdata}<extra></extra>',
                     customdata=pie_df['hover_text']
