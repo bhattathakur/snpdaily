@@ -355,8 +355,8 @@ fig.update_layout(
 template='plotly_dark'
 fig.update_layout(
         template=template,
-    xaxis=dict(title=dict(font="Arial Bold", size=20,color="cyan"),tickfont=dict(family='Times New Roman,bold',size=15,color='brown')),
-    yaxis=dict(title=dict(font="Arial Bold", size=20,color="cyan"))
+    xaxis=dict(title=dict(font=dict(family="Arial Bold", size=20,color="cyan")),tickfont=dict(family='Times New Roman,bold',size=15,color='brown')),
+    yaxis=dict(title=dict(font=dict(family="Arial Bold", size=20,color="cyan")))
 )
 yaxis_title=fig.layout.yaxis.title.text
 #fig.update_layout(yaxis_title=fig.layout.yaxis.title.text.upper(),xaxis_title=fig.layout.xaxis.title.text.upper())
