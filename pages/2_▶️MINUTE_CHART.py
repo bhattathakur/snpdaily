@@ -35,7 +35,7 @@ current_date=current_date_time.date()
 #st.write(f'last_bussiness_days:{last_bussiness_days}')
 
 mag7=['AAPL','NVDA','TSLA','META','AMZN','GOOGL','MSFT','MSTR','AMD','GME','DJT','SMCI']
-indices=['^GSPC','^IXIC','^DJI','^RUT']
+indices=['^GSPC','^IXIC','^DJI','^RUT','TQQQ','SPXL','QLD','SPXS','SQQQ','IBIT','ETHA','GLD','SLV']
 current_time_text=f"{current_date_time.strftime('%A, %I:%M %p, %Y-%m-%d')}"
 
 #check_date_time=True

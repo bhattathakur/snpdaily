@@ -21,7 +21,7 @@ unique_tickers=pd.unique(temp_df['ticker'])
 
 #print(f"Debug: unique_tickers {unique_tickers}")
 #Giving the selection or user input
-ticker_list=['^GSPC','^IXIC','^DJI','^RUT','TSLA','NVDA','AAPL','MSFT','GOOGL','META','AMZN']
+ticker_list=['^GSPC','^IXIC','^DJI','^RUT',TQQQ','SPXL','QLD','SPXS','SQQQ','IBIT','ETHA','GLD','SLV','TSLA','NVDA','AAPL','MSFT','GOOGL','META','AMZN']
 
 
 chosen_ticker=st.sidebar.selectbox('Select a ticker from the list:',ticker_list,index=0)
