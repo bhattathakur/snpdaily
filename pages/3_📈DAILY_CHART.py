@@ -38,11 +38,13 @@ else:
     last_date=df['Date'].iloc[-1].split()[0]#.values[0]
     df['SMA_5'] = df['Close'].rolling(5).mean()
     df['SMA_10'] = df['Close'].rolling(10).mean()
+    df['SMA_21'] = df['Close'].rolling(21).mean()
     df['SMA_50'] = df['Close'].rolling(50).mean()
     df['SMA_200'] = df['Close'].rolling(200).mean()
     #smas for legend
     sma5=df['SMA_5'].iloc[-1]
     sma10=df['SMA_10'].iloc[-1]
+    sma21=df['SMA_21'].iloc[-1]
     sma50=df['SMA_50'].iloc[-1]
     sma200=df['SMA_200'].iloc[-1]
     # Calculate VWAP
@@ -62,6 +64,7 @@ data=[go.Candlestick(x=df['Date'],open=df['Open'],high=df['High'],low=df['Low'],
 #data=[go.Ohlc(x=df['Date'],open=df['Open'],high=df['High'],low=df['Low'],close=df['Close'],name=f'{ticker}-Candlestick')]
 sma5_data=go.Scatter(x=df['Date'],y=df['SMA_5'],mode='lines',name=f'SMA5 {sma5:>26.2f}',line=dict(color='blue',width=2))
 sma10_data=go.Scatter(x=df['Date'],y=df['SMA_10'],mode='lines',name=f'SMA10 {sma10:>24.2f}',line=dict(color='green',width=2))
+sma21_data=go.Scatter(x=df['Date'],y=df['SMA_21'],mode='lines',name=f'SMA10 {sma10:>24.2f}',line=dict(color='violet',width=2))
 sma50_data=go.Scatter(x=df['Date'],y=df['SMA_50'],mode='lines',name=f'SMA50 {sma50:>24.2f}',line=dict(color='yellow',width=2))
 sma200_data=go.Scatter(x=df['Date'],y=df['SMA_200'],mode='lines',name=f'SMA200 {sma200:>22.2f}',line=dict(color='red',width=2))
 vwap_data=go.Scatter(x=df['Date'],y=df['VWAP'],mode='lines',name=f'YTD-VWAP {vwap:>17.2f}',line=dict(color='orange',width=2))
@@ -71,6 +74,7 @@ with st.container():
     fig=go.Figure(data=data)
     fig.add_trace(sma5_data)
     fig.add_trace(sma10_data)
+    fig.add_trace(sma21_data)
     fig.add_trace(sma50_data)
     fig.add_trace(sma200_data)
     fig.add_trace(vwap_data)
