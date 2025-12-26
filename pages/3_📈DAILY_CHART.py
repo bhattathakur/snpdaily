@@ -64,7 +64,7 @@ data=[go.Candlestick(x=df['Date'],open=df['Open'],high=df['High'],low=df['Low'],
 #data=[go.Ohlc(x=df['Date'],open=df['Open'],high=df['High'],low=df['Low'],close=df['Close'],name=f'{ticker}-Candlestick')]
 sma5_data=go.Scatter(x=df['Date'],y=df['SMA_5'],mode='lines',name=f'SMA5 {sma5:>26.2f}',line=dict(color='blue',width=2))
 sma10_data=go.Scatter(x=df['Date'],y=df['SMA_10'],mode='lines',name=f'SMA10 {sma10:>24.2f}',line=dict(color='green',width=2))
-sma21_data=go.Scatter(x=df['Date'],y=df['SMA_21'],mode='lines',name=f'SMA10 {sma10:>24.2f}',line=dict(color='violet',width=2))
+sma21_data=go.Scatter(x=df['Date'],y=df['SMA_21'],mode='lines',name=f'SMA21 {sma21:>24.2f}',line=dict(color='violet',width=2))
 sma50_data=go.Scatter(x=df['Date'],y=df['SMA_50'],mode='lines',name=f'SMA50 {sma50:>24.2f}',line=dict(color='yellow',width=2))
 sma200_data=go.Scatter(x=df['Date'],y=df['SMA_200'],mode='lines',name=f'SMA200 {sma200:>22.2f}',line=dict(color='red',width=2))
 vwap_data=go.Scatter(x=df['Date'],y=df['VWAP'],mode='lines',name=f'YTD-VWAP {vwap:>17.2f}',line=dict(color='orange',width=2))
