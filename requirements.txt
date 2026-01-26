@@ -4,3 +4,5 @@ streamlit
 plotly
 yfinance
 matplotlib
+altair==4.2.2
+
